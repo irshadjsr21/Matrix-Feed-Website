@@ -1,0 +1,107 @@
+.topbar-container {
+  box-shadow: $drop-shadow;
+  background-color: $white;
+  .topbar {
+    .topbar-header {
+      @extend .pt-4, .row, .justify-content-between, .align-items-center;
+      position: relative;
+
+      .nav-toggle-input {
+        @extend .d-none;
+      }
+
+      .logo {
+        @extend .col-sm-4, .col-6;
+      }
+
+      .nav-toggle {
+        @extend .d-sm-none, .col-1, .px-2;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      .ad-space {
+        @extend .col-sm-8, .col-12;
+        width: 100%;
+        height: 50px;
+        background-color: #eee;
+      }
+
+      .topbar-nav {
+        @extend .col-12, .d-flex, .justify-content-between, .pt-4;
+
+        a {
+          @extend .px-2;
+          color: $body-color;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: 1rem;
+        }
+
+        a:hover {
+          @extend .text-primary;
+          text-decoration: none;
+          &::after {
+            transform: scale(1, 1);
+          }
+        }
+
+        a::after {
+          content: "";
+          width: 150%;
+          height: 4px;
+          background-color: $light-faded;
+          margin-top: 5px;
+          transition: transform $animation-duration;
+          transform: scale(0, 1);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .topbar-container {
+    .topbar {
+      .topbar-header {
+        .ad-space {
+          margin-bottom: 5px;
+        }
+
+        .topbar-nav {
+          flex-direction: column;
+          transition: transform $animation-duration;
+          transform: scale(1, 0);
+          transform-origin: top;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background-color: $primary;
+          box-shadow: $drop-shadow;
+          align-items: flex-start;
+          padding: 0;
+          padding: 10px 20px;
+
+          a {
+            color: $light;
+            padding: 10px;
+          }
+
+          a::after {
+            content: none;
+          }
+        }
+
+        .nav-toggle-input:checked ~ .topbar-nav {
+          transform: scale(1, 1);
+        }
+
+        .nav-toggle-input:checked ~ .ad-space {
+          // margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
