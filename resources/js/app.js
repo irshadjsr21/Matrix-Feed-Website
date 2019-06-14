@@ -20,8 +20,12 @@ window.Vue = require("vue");
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 import Showcase from "./components/PostShowcase";
+import TimelinePost from "./components/TimelinePost";
+import Timeline from "./components/Timeline";
 
 Vue.component("post-showcase", Showcase);
+Vue.component("timeline-post", TimelinePost);
+Vue.component("timeline", Timeline);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

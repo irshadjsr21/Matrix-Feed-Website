@@ -29,6 +29,7 @@
 
       .topbar-nav {
         @extend .col-12, .d-flex, .justify-content-between, .pt-4;
+        z-index: 100;
 
         a {
           @extend .px-2;

@@ -1,5 +1,9 @@
 @extends('layouts/default')
 
 @section('content')
-  <post-showcase></post-showcase>
+  <div class="my-4">
+    <post-showcase></post-showcase>
+  </div>
+  <timeline></timeline>
+
 @endsection

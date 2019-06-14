@@ -620,6 +620,7 @@ pre code {
 }
 
 .row,
+.timeline,
 .topbar-container .topbar .topbar-header,
 .header-container .header .icon-container,
 .header-container .header {
@@ -677,6 +678,7 @@ pre code {
 .col-md-8,
 .col-md-7,
 .col-md-6,
+.timeline .timeline-post,
 .col-md-5,
 .col-md-4,
 .col-md-3,
@@ -790,6 +792,7 @@ pre code {
 }
 
 .col-12,
+.timeline .timeline-post,
 .topbar-container .topbar .topbar-header .topbar-nav,
 .topbar-container .topbar .topbar-header .ad-space {
   flex: 0 0 100%;
@@ -1122,7 +1125,8 @@ pre code {
     max-width: 41.6666666667%;
   }
 
-  .col-md-6 {
+  .col-md-6,
+  .timeline .timeline-post {
     flex: 0 0 50%;
     max-width: 50%;
   }
@@ -7311,6 +7315,7 @@ button.header-container:focus {
 }
 
 .justify-content-between,
+.timeline,
 .topbar-container .topbar .topbar-header .topbar-nav,
 .topbar-container .topbar .topbar-header,
 .header-container .header {
@@ -8291,6 +8296,7 @@ button.header-container:focus {
 }
 
 .mb-4,
+.timeline .timeline-post,
 .my-4 {
   margin-bottom: 1.5rem !important;
 }
@@ -10767,6 +10773,10 @@ a.text-dark:focus {
   background-color: #eee;
 }
 
+.topbar-container .topbar .topbar-header .topbar-nav {
+  z-index: 100;
+}
+
 .topbar-container .topbar .topbar-header .topbar-nav a {
   color: #212529;
   display: flex;
@@ -10923,7 +10933,7 @@ a.text-dark:focus {
 
   .showcase .showcase-secondary-section-container-row {
     flex: 1;
-    width: calc(100% + 15px);
+    width: calc(100% + 10px);
   }
 
   .showcase .showcase-secondary-section-container-row .showcase-secondary-section {
@@ -10960,6 +10970,29 @@ a.text-dark:focus {
 
   .showcase .showcase-secondary-section-container .showcase-secondary-section-container-row .showcase-secondary-section:last-child {
     margin-right: 0;
+  }
+}
+
+.timeline .timeline-post .timeline-post-image {
+  background-color: #eee;
+  width: 400px;
+  height: 220px;
+  margin-bottom: 5px;
+}
+
+.timeline .timeline-post .timeline-post-title {
+  font-size: 1.1rem;
+}
+
+.timeline .timeline-post .timeline-post-details {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+@media (max-width: 991px) {
+  .timeline .timeline-post .timeline-post-image {
+    width: 300px;
+    height: 150px;
   }
 }
 
