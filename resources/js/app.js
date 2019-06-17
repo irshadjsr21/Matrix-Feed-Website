@@ -22,12 +22,10 @@ window.Vue = require("vue");
 import Showcase from "./components/PostShowcase";
 import TimelinePost from "./components/TimelinePost";
 import Timeline from "./components/Timeline";
-import AdminLoginForm from "./components/admin/LoginForm";
 
 Vue.component("post-showcase", Showcase);
 Vue.component("timeline-post", TimelinePost);
 Vue.component("timeline", Timeline);
-Vue.component("admin-login", AdminLoginForm);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

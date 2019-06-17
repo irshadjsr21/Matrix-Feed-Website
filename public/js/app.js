@@ -49444,7 +49444,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PostShowcase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/PostShowcase */ "./resources/js/components/PostShowcase.vue");
 /* harmony import */ var _components_TimelinePost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/TimelinePost */ "./resources/js/components/TimelinePost.vue");
 /* harmony import */ var _components_Timeline__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Timeline */ "./resources/js/components/Timeline.vue");
-/* harmony import */ var _components_admin_LoginForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/admin/LoginForm */ "./resources/js/components/admin/LoginForm.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -49466,11 +49465,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-
 Vue.component("post-showcase", _components_PostShowcase__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component("timeline-post", _components_TimelinePost__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component("timeline", _components_Timeline__WEBPACK_IMPORTED_MODULE_2__["default"]);
-Vue.component("admin-login", _components_admin_LoginForm__WEBPACK_IMPORTED_MODULE_3__["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49745,17 +49742,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TimelinePost_vue_vue_type_template_id_8d6bb828___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/admin/LoginForm.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/admin/LoginForm.vue ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'D:\\My Projects\\Goose\\Matrix Feed\\site\\resources\\js\\components\\admin\\LoginForm.vue'");
 
 /***/ }),
 
