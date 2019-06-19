@@ -14,13 +14,14 @@
 Route::get('/', 'UserPagesController@index');
 
 Route::get('/admin', 'AdminPagesController@index');
-Route::get('/admin/posts', 'AdminPagesController@listPosts');
-Route::get('/admin/posts/add', 'AdminPagesController@addPostPage');
-Route::post('/admin/posts', 'AdminPagesController@addPost');
-Route::get('/admin/posts/{id}', 'AdminPagesController@showPost');
-Route::post('/admin/posts/{id}/delete', 'AdminPagesController@deletePost');
-Route::get('/admin/posts/{id}/edit', 'AdminPagesController@editPostPage');
-Route::post('/admin/posts/{id}/edit', 'AdminPagesController@editPost');
+
+Route::get('/admin/posts', 'AdminPostsController@listPosts');
+Route::get('/admin/posts/add', 'AdminPostsController@addPostPage');
+Route::post('/admin/posts', 'AdminPostsController@addPost');
+Route::get('/admin/posts/{id}', 'AdminPostsController@showPost');
+Route::post('/admin/posts/{id}/delete', 'AdminPostsController@deletePost');
+Route::get('/admin/posts/{id}/edit', 'AdminPostsController@editPostPage');
+Route::post('/admin/posts/{id}/edit', 'AdminPostsController@editPost');
 
 Auth::routes();
 

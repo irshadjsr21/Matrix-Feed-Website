@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/mw4yr1zjxr8kgbdx652xu1zl3a3bgeo24g3easwbuavowx2d/tinymce/5/tinymce.min.js"></script> 
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -47,7 +48,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->firstName }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -98,7 +99,6 @@
             @yield('content')
         </main>
     </div>
-    <script src="https://cdn.tiny.cloud/1/mw4yr1zjxr8kgbdx652xu1zl3a3bgeo24g3easwbuavowx2d/tinymce/5/tinymce.min.js"></script> 
     <script>
     tinymce.init({
       selector: '#text-editor'

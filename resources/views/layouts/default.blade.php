@@ -10,21 +10,16 @@
         @yield('head')
     </head>
     <body>
-        @component('../components/header')
-        
-        @endcomponent
-        
-        @component('../components/topbar')
-        
-        @endcomponent
+        @include('../components/header')
+    
+        @include('../components/topbar')
 
         <div id="app" class="container">
             @yield('content')
         </div>
 
-        @component('../components/copyright')
-            
-        @endcomponent
+        @include('../components/copyright')
+
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>

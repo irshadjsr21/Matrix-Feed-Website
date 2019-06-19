@@ -4,8 +4,16 @@
       <div class="col-sm-8 col-12">
         <a href="#" class="header-link">About</a>
         <a href="#" class="header-link">Contact</a>
-        <a href="#" class="header-link">Sign up</a>
-        <a href="#" class="header-link">Login</a>
+        @guest
+        <a href="/register" class="header-link">Sign up</a>
+        <a href="/login" class="header-link">Login</a>
+        @else
+        <a href="{{ route('logout') }}" class="header-link"
+        onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+         {{ __('Logout') }}
+        </a>
+        @endguest
       </div>
       <div class="col-sm-4 col-12">
         <div class="icon-container">
@@ -17,3 +25,7 @@
     </div>
   </div>
 </div>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
