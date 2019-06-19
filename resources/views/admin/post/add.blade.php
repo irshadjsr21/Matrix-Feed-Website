@@ -27,10 +27,10 @@
 
                       <div class="form-group row">
                             <label for="author" class="col-2 col-form-label text-md-right">{{ __('Author') }}</label>
-  
+
                             <div class="col-10">
                                 <input id="author" type="text" class="form-control @error('author') is-invalid @enderror" name="author" value="{{ old('author') }}" autocomplete="author" autofocus>
-  
+
                                 @error('author')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -41,17 +41,35 @@
 
                         <div class="form-group row">
                                 <label for="image" class="col-2 col-form-label text-md-right">{{ __('Image') }}</label>
-      
+
                                 <div class="col-10">
                                     <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" autofocus>
-      
+
                                     @error('image')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                                <label for="category" class="col-2 col-form-label text-md-right">{{ __('Category') }}</label>
+
+                                <div class="col-10">
+                                    <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" autofocus>
+                                        @foreach ($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('category')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                        </div>
 
                       <div class="form-group row">
                           <label for="body" class="col-2 col-form-label text-md-right">{{ __('Body') }}</label>

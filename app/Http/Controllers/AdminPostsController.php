@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
+use App\Rules\CategoryId;
 use Illuminate\Http\Request;
 
 class AdminPostsController extends Controller
 {
     private $folder = 'images';
+
+    public function __construct()
+    {
+        $this->middleware('is_admin');
+    }
 
     public function listPosts()
     {
@@ -24,7 +31,13 @@ class AdminPostsController extends Controller
     public function editPostPage(Request $request, $id)
     {
         $post = Post::find($id);
-        return view('admin.post.edit')->with('post', $post);
+        $categories = Category::all();
+
+        $data = array(
+            'post' => $post,
+            'categories' => $categories,
+        );
+        return view('admin.post.edit')->with($data);
     }
 
     public function editPost(Request $request, $id)
@@ -34,11 +47,14 @@ class AdminPostsController extends Controller
             'author' => 'required',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif',
             'body' => 'required',
+            'category' => ['required', new CategoryId],
         ]);
 
         $post = Post::find($id);
 
         $post->title = $request->input('title');
+        $post->author = $request->input('author');
+        $post->category_id = $request->input('category');
         $post->body = $request->input('body');
 
         if ($request->has('image') && $request->file('image')) {
@@ -56,7 +72,8 @@ class AdminPostsController extends Controller
 
     public function addPostPage()
     {
-        return view('admin.post.add');
+        $categories = Category::all();
+        return view('admin.post.add')->with('categories', $categories);
     }
 
     public function addPost(Request $request)
@@ -66,11 +83,13 @@ class AdminPostsController extends Controller
             'author' => 'required',
             'body' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif',
+            'category' => ['required', new CategoryId],
         ]);
 
         $post = new Post;
         $post->title = $request->input('title');
         $post->author = $request->input('author');
+        $post->category_id = $request->input('category');
         $post->body = $request->input('body');
 
         if ($request->has('image')) {
