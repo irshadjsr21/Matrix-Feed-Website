@@ -11084,3 +11084,34 @@ a.text-dark:focus {
   font-size: 1.1rem;
 }
 
+.social-links-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.social-links-container div {
+  margin-right: 10px;
+}
+
+.social-links-container div:last-child {
+  margin-right: 0;
+}
+
+.social-links-container #social-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+}
+
+.social-links-container #social-links ul li {
+  margin-right: 20px;
+  font-size: 2rem;
+}
+
+.social-links-container #social-links ul li:last-child {
+  margin-right: 0;
+}
+

@@ -22,5 +22,6 @@
         @include('../components/copyright')
 
         <script src="{{ mix('js/app.js') }}"></script>
+        <script src="{{ asset('js/share.js') }}"></script>
     </body>
 </html>

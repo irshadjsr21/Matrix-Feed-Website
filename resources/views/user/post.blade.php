@@ -1,5 +1,6 @@
 @extends('../layouts/default')
 
+
 @section('content')
   <div class="my-4 post">
     <input type="button" class="btn btn-light text-dark mb-2" value="Go Back" onclick="history.back(-1)" />
@@ -15,6 +16,19 @@
     </div>
     <div class="post-body">
         {!! $post->body !!}
+
+        <div class="social-links-container">
+          <div>Share : </div>
+          {!!
+            Share::currentPage('Matrix Feed : ')
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->whatsapp()
+          !!}
+        </div>
     </div>
+
+
   </div>
 @endsection
