@@ -1,31 +1,47 @@
 .timeline {
-  @extend .row, .justify-content-between;
-  .timeline-post {
+  @extend .row, .justify-content-between, .py-4;
+  .timeline-post-container {
     @extend .col-md-6, .col-12, .mb-4;
-    .timeline-post-image {
-      background-color: #eee;
-      width: 400px;
-      height: 220px;
-      margin-bottom: 5px;
-    }
 
-    .timeline-post-title {
-      font-size: 1.1rem;
-    }
+    .timeline-post {
+      color: $body-color;
+      .timeline-post-image {
+        background-color: #eee;
+        background-size: cover;
+        background-position: center;
+        width: 400px;
+        height: 220px;
+        margin-bottom: 5px;
+      }
 
-    .timeline-post-details {
-      font-size: 0.9rem;
-      opacity: 0.6;
+      .timeline-post-title {
+        font-size: 1.1rem;
+      }
+
+      .timeline-post-details {
+        font-size: 0.9rem;
+        opacity: 0.6;
+
+        .timeline-post-author {
+          font-weight: bold;
+        }
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }
 
 @media (max-width: 991px) {
   .timeline {
-    .timeline-post {
-      .timeline-post-image {
-        width: 300px;
-        height: 150px;
+    .timeline-post-container {
+      .timeline-post {
+        .timeline-post-image {
+          width: 300px;
+          height: 150px;
+        }
       }
     }
   }

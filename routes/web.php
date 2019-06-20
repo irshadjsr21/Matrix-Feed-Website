@@ -33,4 +33,5 @@ Route::post('/admin/category/{id}/edit', 'AdminCategoryController@editCategory')
 
 Auth::routes();
 
+Route::get('/posts/{id}', 'UserPagesController@showPost');
 Route::get('/home', 'HomeController@index')->name('home');

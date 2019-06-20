@@ -22,10 +22,12 @@ window.Vue = require("vue");
 import Showcase from "./components/PostShowcase";
 import TimelinePost from "./components/TimelinePost";
 import Timeline from "./components/Timeline";
+import DateTimeFormat from "./components/DateTimeFormat";
 
 Vue.component("post-showcase", Showcase);
 Vue.component("timeline-post", TimelinePost);
-Vue.component("timeline", Timeline);
+Vue.component("timeline-list", Timeline);
+Vue.component("date-format", DateTimeFormat);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

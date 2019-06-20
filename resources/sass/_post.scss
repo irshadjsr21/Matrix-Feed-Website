@@ -1,0 +1,29 @@
+.post {
+  .image-container-full {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    img {
+      height: 400px;
+      width: auto;
+    }
+  }
+
+  .post-meta {
+    margin-bottom: 20px;
+    .post-details {
+      opacity: 0.6;
+      .post-author {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .post-body {
+    width: 80%;
+    margin: auto;
+    font-size: 1.1rem;
+  }
+}
