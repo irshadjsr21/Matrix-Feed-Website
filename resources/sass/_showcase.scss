@@ -1,12 +1,25 @@
 .showcase {
+  margin-top: 20px;
+  margin-bottom: 20px;
   align-items: stretch;
   height: 400px;
   .showcase-main-section {
     width: 100%;
     height: 100%;
     margin-right: 5px;
-    font-size: 1.5rem;
     padding: 40px;
+
+    .showcase-title {
+      font-size: 1.5rem;
+    }
+
+    .showcase-details {
+      opacity: 0.6;
+
+      .showcase-author {
+        font-weight: bold;
+      }
+    }
   }
 
   .showcase-secondary-section-container-row {
@@ -20,7 +33,7 @@
 
     .showcase-secondary-section {
       margin-right: 5px;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       padding: 20px;
       &:last-child {
         margin-right: 0;
@@ -39,7 +52,6 @@
     background-color: #999;
     background-position: center;
     background-size: cover;
-    background-image: url("http://deepblueimages.com/dbi/wp-content/gallery/island-images/056.jpg");
     .showcase-title {
       font-weight: bold;
     }
@@ -95,6 +107,7 @@
           width: calc(50%-2.5px);
           margin-right: 5px;
           margin-bottom: 5px;
+          font-size: 1rem;
 
           &:last-child {
             margin-right: 0;

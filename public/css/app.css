@@ -7316,7 +7316,6 @@ button.header-container:focus {
 
 .justify-content-between,
 .timeline,
-.topbar-container .topbar .topbar-header .topbar-nav,
 .topbar-container .topbar .topbar-header,
 .header-container .header {
   justify-content: space-between !important;
@@ -10785,6 +10784,7 @@ a.text-dark:focus {
   flex-direction: column;
   align-items: center;
   font-size: 1rem;
+  margin-right: 20px;
 }
 
 .topbar-container .topbar .topbar-header .topbar-nav a:hover {
@@ -10837,6 +10837,7 @@ a.text-dark:focus {
   .topbar-container .topbar .topbar-header .topbar-nav a {
     color: #f8f9fa;
     padding: 10px;
+    margin-right: 0;
   }
 
   .topbar-container .topbar .topbar-header .topbar-nav a::after {
@@ -10857,6 +10858,8 @@ a.text-dark:focus {
 }
 
 .showcase {
+  margin-top: 20px;
+  margin-bottom: 20px;
   align-items: stretch;
   height: 400px;
 }
@@ -10865,8 +10868,19 @@ a.text-dark:focus {
   width: 100%;
   height: 100%;
   margin-right: 5px;
-  font-size: 1.5rem;
   padding: 40px;
+}
+
+.showcase .showcase-main-section .showcase-title {
+  font-size: 1.5rem;
+}
+
+.showcase .showcase-main-section .showcase-details {
+  opacity: 0.6;
+}
+
+.showcase .showcase-main-section .showcase-details .showcase-author {
+  font-weight: bold;
 }
 
 .showcase .showcase-secondary-section-container-row {
@@ -10881,7 +10895,7 @@ a.text-dark:focus {
 
 .showcase .showcase-secondary-section-container-row .showcase-secondary-section {
   margin-right: 5px;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   padding: 20px;
 }
 
@@ -10900,7 +10914,6 @@ a.text-dark:focus {
   background-color: #999;
   background-position: center;
   background-size: cover;
-  background-image: url("http://deepblueimages.com/dbi/wp-content/gallery/island-images/056.jpg");
 }
 
 .showcase .showcase-main-section .showcase-title,
@@ -10968,11 +10981,16 @@ a.text-dark:focus {
     width: calc(50%-2.5px);
     margin-right: 5px;
     margin-bottom: 5px;
+    font-size: 1rem;
   }
 
   .showcase .showcase-secondary-section-container .showcase-secondary-section-container-row .showcase-secondary-section:last-child {
     margin-right: 0;
   }
+}
+
+.timeline .timeline-post-container {
+  padding: 0;
 }
 
 .timeline .timeline-post-container .timeline-post {
@@ -10986,6 +11004,8 @@ a.text-dark:focus {
   width: 400px;
   height: 220px;
   margin-bottom: 5px;
+  box-shadow: 1px 1px 1px 1000px inset rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s;
 }
 
 .timeline .timeline-post-container .timeline-post .timeline-post-title {
@@ -10993,7 +11013,7 @@ a.text-dark:focus {
 }
 
 .timeline .timeline-post-container .timeline-post .timeline-post-details {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   opacity: 0.6;
 }
 
@@ -11005,10 +11025,31 @@ a.text-dark:focus {
   text-decoration: none;
 }
 
+.timeline .timeline-post-container .timeline-post:hover .timeline-post-image {
+  box-shadow: 1px 1px 1px 1000px inset rgba(0, 0, 0, 0);
+}
+
 @media (max-width: 991px) {
   .timeline .timeline-post-container .timeline-post .timeline-post-image {
     width: 300px;
     height: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline {
+    margin: 0 5px;
+  }
+
+  .timeline .timeline-post-container .timeline-post .timeline-post-image {
+    width: 100%;
+    height: 250px;
+  }
+}
+
+@media (max-width: 425px) {
+  .timeline .timeline-post-container .timeline-post .timeline-post-image {
+    height: 200px;
   }
 }
 

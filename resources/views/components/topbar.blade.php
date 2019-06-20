@@ -16,11 +16,10 @@
         </div>
 
         <nav class="topbar-nav">
-          <a href="#">Home</a>
-          <a href="#">Home</a>
-          <a href="#">Home</a>
-          <a href="#">Home</a>
-          <a href="#">About</a>
+          <a href="/">Home</a>
+          @foreach ($categories as $category)
+            <a href="/category/{{ $category->id }}">{{ $category->name }}</a>              
+          @endforeach
         </nav>
       </div>
     </div>

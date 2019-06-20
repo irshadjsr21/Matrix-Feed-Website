@@ -2,9 +2,8 @@
 
 @section('content')
   <div class="my-4">
-    <h1>Home</h1>
-    <post-showcase></post-showcase>
-    <timeline-list v-bind:posts="{{ json_encode($posts) }} "></timeline-list>
+    <h1>{{ $title }}</h1>
+    <posts-display v-bind:posts="{{ json_encode($posts) }} "></posts-display>
     <div>
         {{$posts->links()}}
     </div>
