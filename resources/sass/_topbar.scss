@@ -17,6 +17,7 @@
       .nav-toggle {
         @extend .d-sm-none, .col-1, .px-2;
         font-size: 1.5rem;
+        margin-right: 10px;
         cursor: pointer;
       }
 
