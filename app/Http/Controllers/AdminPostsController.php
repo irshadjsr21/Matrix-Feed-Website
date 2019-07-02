@@ -126,7 +126,7 @@ class AdminPostsController extends Controller
     {
         $imageUrlArray = explode('/', $imageUrl);
         $imageName = $imageUrlArray[sizeof($imageUrlArray) - 1];
-        $imagePath = public_path($this->folder . '\\' . $imageName);
+        $imagePath = public_path($this->folder . '/' . $imageName);
         if (file_exists($imagePath)) {
             @unlink($imagePath);
         }
