@@ -8,7 +8,7 @@
               <div class="card-header">{{ __('Add Post') }}</div>
 
               <div class="card-body">
-                  <form method="POST" action="/admin/posts/" enctype="multipart/form-data">
+                  <form method="POST" action="/admin/posts" enctype="multipart/form-data">
                       @csrf
 
                       <div class="form-group row">
