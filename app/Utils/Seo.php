@@ -2,6 +2,7 @@
 
 namespace App\Utils;
 
+use Illuminate\Support\Facades\URL;
 class SEO
 {
     private static $default = array(
@@ -13,11 +14,12 @@ class SEO
     private static $twitterHandle = '@';
     private static $siteName = 'Matrix Feed';
     private static $fbId = '';
-    private static $twitterUsername = '';
+    private static $twitterUsername = '@feed_matrix';
 
     public static function post($post, $url)
     {
-        return self::createObj($post->title, $post->body, $post->image, $url, $post->created_at, 'article');
+        $fullImgUrl = URL::to('/') . $post->image;
+        return self::createObj($post->title, $post->description, $fullImgUrl, $url, $post->created_at, 'article');
     }
 
     public static function home($url)
