@@ -33,13 +33,15 @@
         z-index: 100;
 
         a {
-          @extend .px-2;
+          &:first-child {
+            padding-left: 0;
+          }
+          padding: 0 1.5rem;
           color: $body-color;
           display: flex;
           flex-direction: column;
           align-items: center;
           font-size: 1rem;
-          margin-right: 20px;
         }
 
         a:hover {
@@ -52,7 +54,7 @@
 
         a::after {
           content: "";
-          width: 150%;
+          width: calc(100% + 25px);
           height: 4px;
           background-color: $light-faded;
           margin-top: 5px;
@@ -88,6 +90,9 @@
           padding: 10px 20px;
 
           a {
+            &:first-child {
+              padding: 10px;
+            }
             color: $light;
             padding: 10px;
             margin-right: 0;

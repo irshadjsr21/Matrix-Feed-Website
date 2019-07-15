@@ -22,3 +22,4 @@
 <meta name="twitter:title"content="{{ $SEO['title'] }}" />
 <meta name="twitter:site"content="{{ $SEO['twitterUsername'] }}" />
 <meta name="twitter:creator" content="{{ $SEO['twitterUsername'] }}"/>
+<meta name="twitter:image" content="{{ $SEO['image'] }}"> 

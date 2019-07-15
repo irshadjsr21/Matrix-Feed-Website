@@ -47,6 +47,7 @@ class AdminPostsController extends Controller
             'author' => 'required',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif',
             'body' => 'required',
+            'description' => 'nullable',
             'category' => ['required', new CategoryId],
         ]);
 
@@ -56,6 +57,7 @@ class AdminPostsController extends Controller
         $post->author = $request->input('author');
         $post->category_id = $request->input('category');
         $post->body = $request->input('body');
+        $post->description = $request->input('description');
 
         if ($request->has('image') && $request->file('image')) {
             $image = $request->file('image');
@@ -83,6 +85,7 @@ class AdminPostsController extends Controller
             'author' => 'required',
             'body' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif',
+            'description' => 'nullable',
             'category' => ['required', new CategoryId],
         ]);
 
@@ -91,6 +94,7 @@ class AdminPostsController extends Controller
         $post->author = $request->input('author');
         $post->category_id = $request->input('category');
         $post->body = $request->input('body');
+        $post->description = $request->input('description');
 
         if ($request->has('image')) {
             $image = $request->file('image');
