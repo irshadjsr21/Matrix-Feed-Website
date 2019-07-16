@@ -1,18 +1,18 @@
 <?php
-Route::get('/admin', 'AdminPagesController@index');
+Route::get('/', 'AdminPagesController@index');
 
-Route::get('/admin/posts', 'AdminPostsController@listPosts');
-Route::get('/admin/posts/add', 'AdminPostsController@addPostPage');
-Route::post('/admin/posts', 'AdminPostsController@addPost');
-Route::get('/admin/posts/{id}', 'AdminPostsController@showPost');
-Route::post('/admin/posts/{id}/delete', 'AdminPostsController@deletePost');
-Route::get('/admin/posts/{id}/edit', 'AdminPostsController@editPostPage');
-Route::post('/admin/posts/{id}/edit', 'AdminPostsController@editPost');
+Route::get('/posts', 'AdminPostsController@listPosts');
+Route::get('/posts/add', 'AdminPostsController@addPostPage');
+Route::post('/posts', 'AdminPostsController@addPost');
+Route::get('/posts/{id}', 'AdminPostsController@showPost');
+Route::post('/posts/{id}/delete', 'AdminPostsController@deletePost');
+Route::get('/posts/{id}/edit', 'AdminPostsController@editPostPage');
+Route::post('/posts/{id}/edit', 'AdminPostsController@editPost');
 
-Route::get('/admin/category', 'AdminCategoryController@listCategory');
-Route::get('/admin/category/add', 'AdminCategoryController@addCategoryPage');
-Route::post('/admin/category', 'AdminCategoryController@addCategory');
-Route::get('/admin/category/{id}', 'AdminCategoryController@showCategory');
-Route::post('/admin/category/{id}/delete', 'AdminCategoryController@deleteCategory');
-Route::get('/admin/category/{id}/edit', 'AdminCategoryController@editCategoryPage');
-Route::post('/admin/category/{id}/edit', 'AdminCategoryController@editCategory');
+Route::get('/category', 'AdminCategoryController@listCategory');
+Route::get('/category/add', 'AdminCategoryController@addCategoryPage');
+Route::post('/category', 'AdminCategoryController@addCategory');
+Route::get('/category/{id}', 'AdminCategoryController@showCategory');
+Route::post('/category/{id}/delete', 'AdminCategoryController@deleteCategory');
+Route::get('/category/{id}/edit', 'AdminCategoryController@editCategoryPage');
+Route::post('/category/{id}/edit', 'AdminCategoryController@editCategory');
