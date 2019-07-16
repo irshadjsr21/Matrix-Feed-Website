@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Post;
 use App\Rules\CategoryId;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AdminPostsController extends Controller
+class PostsController extends Controller
 {
     private $folder = 'images';
 

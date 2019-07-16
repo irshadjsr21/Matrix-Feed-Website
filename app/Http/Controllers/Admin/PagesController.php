@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
-class AdminPagesController extends Controller
+class PagesController extends Controller
 {
     public function __construct()
     {
