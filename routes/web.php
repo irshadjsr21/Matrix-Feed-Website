@@ -31,8 +31,12 @@ Route::post('/admin/category/{id}/delete', 'AdminCategoryController@deleteCatego
 Route::get('/admin/category/{id}/edit', 'AdminCategoryController@editCategoryPage');
 Route::post('/admin/category/{id}/edit', 'AdminCategoryController@editCategory');
 
-Auth::routes();
-
 Route::get('/posts/{id}', 'UserPagesController@showPost');
 Route::get('/category/{id}', 'UserPagesController@categoryPage');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/login', 'CustomAuth\AuthController@loginPage');
+Route::get('/signup', 'CustomAuth\AuthController@signupPage');
+Route::post('/login', 'CustomAuth\AuthController@login');
+Route::post('/signup', 'CustomAuth\AuthController@signup');
+Route::post('/logout', 'CustomAuth\AuthController@logout');
