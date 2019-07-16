@@ -5,10 +5,10 @@
         <a href="#" class="header-link">About</a>
         <a href="#" class="header-link">Contact</a>
         @guest
-        <a href="/register" class="header-link">Sign up</a>
+        <a href="/signup" class="header-link">Sign up</a>
         <a href="/login" class="header-link">Login</a>
         @else
-        <a href="{{ route('logout') }}" class="header-link"
+        <a href="/logout" class="header-link"
         onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
          {{ __('Logout') }}
@@ -26,6 +26,6 @@
   </div>
 </div>
 
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+<form id="logout-form" action="/logout" method="POST" style="display: none;">
     @csrf
 </form>

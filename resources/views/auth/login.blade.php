@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('content')
-<div class="container">
+<div class="my-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="/login">
                         @csrf
 
                         <div class="form-group row">
@@ -38,6 +38,16 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        @isset($authError)
+                            <div class="row mb-2">
+                                <div class="col-md-6 offset-md-4">
+                                    <span class="invalid-feedback" style="display:block;" role="alert">
+                                        <strong>{{ $authError }}</strong>
+                                    </span>
+                                </div>
+                            </div>
+                        @endisset
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
