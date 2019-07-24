@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\User;
 use App\Utils\SEO;
 use Illuminate\Http\Request;
 
@@ -49,5 +50,13 @@ class UserPagesController extends Controller
             'SEO' => $SEO,
         );
         return view('user.post')->with($data);
+    }
+
+    public function showProfile(Request $request) {
+        $data = array(
+            'SEO' => SEO::minimal('Profile'),
+            'categories' => Category::all()
+        );
+        return view('user.profile', $data);
     }
 }

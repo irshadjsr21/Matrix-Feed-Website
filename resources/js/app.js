@@ -24,12 +24,14 @@ import TimelinePost from "./components/TimelinePost";
 import Timeline from "./components/Timeline";
 import PostsDisplay from "./components/PostsDisplay";
 import DateTimeFormat from "./components/DateTimeFormat";
+import UserProfile from "./components/UserProfile";
 
 Vue.component("post-showcase", Showcase);
 Vue.component("timeline-post", TimelinePost);
 Vue.component("timeline-list", Timeline);
 Vue.component("date-format", DateTimeFormat);
 Vue.component("posts-display", PostsDisplay);
+Vue.component("user-profile", UserProfile);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -14,6 +14,21 @@
   }
 }
 
+.btn-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .btn-loader {
+      width: 15px;
+      height: 15px;
+      border: 1px solid #eee;
+      border-top-color: $primary;
+      border-radius: 50%;
+      margin-right: 5px;
+      animation: loader 1s infinite linear;
+  }
+}
+
 @keyframes loader {
   0% {
     transform: rotate(0);

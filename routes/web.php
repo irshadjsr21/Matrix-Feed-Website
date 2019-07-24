@@ -14,3 +14,4 @@
 Route::get('/', 'UserPagesController@index');
 Route::get('/posts/{id}', 'UserPagesController@showPost');
 Route::get('/category/{id}', 'UserPagesController@categoryPage');
+Route::get('/profile', 'UserPagesController@showProfile')->middleware('auth');
