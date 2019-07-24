@@ -8,6 +8,7 @@
         <a href="/signup" class="header-link">Sign up</a>
         <a href="/login" class="header-link">Login</a>
         @else
+        <a href="/profile" class="header-link">Profile</a>
         <a href="/logout" class="header-link"
         onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">

@@ -19,15 +19,20 @@ class SEO
     public static function post($post, $url)
     {
         $fullImgUrl = URL::to('/') . $post->image;
-        return self::createObj($post->title, $post->description, $fullImgUrl, $url, $post->created_at, 'article');
+        return self::createObj($post->title, $post->description, $fullImgUrl, $url, $post->created_at, 'article', false);
     }
 
     public static function home($url)
     {
-        return self::createObj(self::$default['title'], self::$default['content'], self::$default['image'], $url, null, 'website');
+        return self::createObj(self::$default['title'], self::$default['content'], self::$default['image'], $url, null, 'website', false);
     }
 
-    public static function createObj($title, $content, $image, $url, $date, $type)
+    public static function minimal($title)
+    {
+        return self::createObj($title, null, null, null, null, 'website', true);
+    }
+
+    public static function createObj($title, $content, $image, $url, $date, $type, $isMinimal)
     {
         $SEO = array(
             'title' => $title,
@@ -39,7 +44,8 @@ class SEO
             'twitterUsername' => self::$twitterUsername,
             'fbId' => self::$fbId,
             'keywords' => self::$default['keywords'],
-            'date' => null
+            'date' => null,
+            'isMinimal' => $isMinimal
         );
 
         if ($date) {
