@@ -1,17 +1,17 @@
 <title>{{ $SEO['title'] }}</title>
 
-<meta name="description" itemprop="description" content='{{ $SEO["description"] }}' />
 
 @if ($SEO['keywords'])
-  <meta name="keywords" content="{{ $SEO['keywords'] }}" />  
+<meta name="keywords" content="{{ $SEO['keywords'] }}" />  
 @endif
 
 @if ($SEO['date'])
-  <meta property="article:published_time" content="{{ $SEO['date'] }}" />
+<meta property="article:published_time" content="{{ $SEO['date'] }}" />
 @endif
 
 @if ($SEO['description'])
-  <meta property="og:description"content='{{ $SEO["description"] }}' /> 
+  <meta name="description" itemprop="description" content="{{ $SEO["description"] }}" />
+  <meta property="og:description"content="{{ $SEO["description"] }}" /> 
 @endif
 
 @if ($SEO['image'])

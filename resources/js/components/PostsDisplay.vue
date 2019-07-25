@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div
+      class="h-100 row align-items-center"
+      v-if="showcasePosts.length == 0 && timelinePosts == 0"
+    >
+      <div class="col text-center">
+        <h3>No Posts Available</h3>
+        <div style="opacity: 0.8" class="mb-2">We're sorry for the inconvenice caused.</div>
+        <a href="/" class="btn btn-primary">Go Back</a>
+      </div>
+    </div>
     <post-showcase v-bind:posts="showcasePosts"></post-showcase>
     <timeline-list v-bind:posts="timelinePosts"></timeline-list>
   </div>

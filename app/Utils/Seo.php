@@ -3,13 +3,14 @@
 namespace App\Utils;
 
 use Illuminate\Support\Facades\URL;
+
 class SEO
 {
     private static $default = array(
         'title' => 'Matrix Feed',
-        'content' => 'Matrix Feed',
+        'content' => 'MATRIXFEED is a website that will provide you the best and most efficient articles about all the topics you are eager to know about. Our motive is to share the information and knowledge to our greatest extent. We have the best brains working for you and your queries.',
         'image' => '',
-        'keywords' => ''
+        'keywords' => '',
     );
     private static $twitterHandle = '@';
     private static $siteName = 'Matrix Feed';
@@ -29,7 +30,7 @@ class SEO
 
     public static function minimal($title)
     {
-        return self::createObj($title, null, null, null, null, 'website', true);
+        return self::createObj($title, self::$default['content'], null, null, null, 'website', true);
     }
 
     public static function createObj($title, $content, $image, $url, $date, $type, $isMinimal)
@@ -45,7 +46,7 @@ class SEO
             'fbId' => self::$fbId,
             'keywords' => self::$default['keywords'],
             'date' => null,
-            'isMinimal' => $isMinimal
+            'isMinimal' => $isMinimal,
         );
 
         if ($date) {

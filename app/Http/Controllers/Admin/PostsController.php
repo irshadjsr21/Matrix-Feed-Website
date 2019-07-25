@@ -48,7 +48,7 @@ class PostsController extends Controller
             'author' => 'required',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif',
             'body' => 'required',
-            'description' => 'nullable',
+            'description' => 'required',
             'category' => ['required', new CategoryId],
         ]);
 
@@ -86,7 +86,7 @@ class PostsController extends Controller
             'author' => 'required',
             'body' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif',
-            'description' => 'nullable',
+            'description' => 'required',
             'category' => ['required', new CategoryId],
         ]);
 
