@@ -19,6 +19,7 @@ window.Vue = require("vue");
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
+import VueTruncate from "vue-truncate-filter";
 import Showcase from "./components/PostShowcase";
 import TimelinePost from "./components/TimelinePost";
 import Timeline from "./components/Timeline";
@@ -26,6 +27,7 @@ import PostsDisplay from "./components/PostsDisplay";
 import DateTimeFormat from "./components/DateTimeFormat";
 import UserProfile from "./components/UserProfile";
 
+Vue.use(VueTruncate);
 Vue.component("post-showcase", Showcase);
 Vue.component("timeline-post", TimelinePost);
 Vue.component("timeline-list", Timeline);

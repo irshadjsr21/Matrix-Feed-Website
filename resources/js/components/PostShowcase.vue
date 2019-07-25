@@ -6,7 +6,7 @@
       class="col showcase-main-section"
       v-if="posts[0]"
     >
-      <div class="showcase-title">{{ posts[0].title }}</div>
+      <div class="showcase-title">{{ posts[0].title | truncate(45)}}</div>
       <div class="showcase-details">
         <span class="showcase-author">{{ posts[0].author }}</span>
         <span class="showcase-date">
@@ -24,7 +24,7 @@
           class="col showcase-secondary-section"
           v-if="posts[1]"
         >
-          <div class="showcase-title">{{ posts[1].title }}</div>
+          <div class="showcase-title">{{ posts[1].title | truncate(45)}}</div>
         </a>
         <a
           v-bind:href="'/posts/' + posts[2].id"
@@ -32,7 +32,7 @@
           class="col showcase-secondary-section"
           v-if="posts[2]"
         >
-          <div class="showcase-title">{{ posts[2].title }}</div>
+          <div class="showcase-title">{{ posts[2].title | truncate(45)}}</div>
         </a>
       </div>
 
@@ -43,7 +43,7 @@
           class="col showcase-secondary-section"
           v-if="posts[3]"
         >
-          <div class="showcase-title">{{ posts[3].title }}</div>
+          <div class="showcase-title">{{ posts[3].title | truncate(45)}}</div>
         </a>
         <a
           v-bind:href="'/posts/' + posts[4].id"
@@ -51,7 +51,7 @@
           class="col showcase-secondary-section"
           v-if="posts[4]"
         >
-          <div class="showcase-title">{{ posts[4].title }}</div>
+          <div class="showcase-title">{{ posts[4].title | truncate(45)}}</div>
         </a>
       </div>
     </div>
