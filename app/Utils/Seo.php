@@ -12,9 +12,8 @@ class SEO
         'image' => '',
         'keywords' => '',
     );
-    private static $twitterHandle = '@';
     private static $siteName = 'Matrix Feed';
-    private static $fbId = '';
+    private static $fbId = '365090877489585';
     private static $twitterUsername = '@feed_matrix';
 
     public static function post($post, $url)

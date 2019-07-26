@@ -1,10 +1,10 @@
 <template>
   <div>
     <div
-      class="h-100 row align-items-center"
+      class="h-100 py-4 row align-items-center"
       v-if="showcasePosts.length == 0 && timelinePosts == 0"
     >
-      <div class="col text-center">
+      <div class="col py-4 text-center">
         <h3>No Posts Available</h3>
         <div style="opacity: 0.8" class="mb-2">We're sorry for the inconvenice caused.</div>
         <a href="/" class="btn btn-primary">Go Back</a>

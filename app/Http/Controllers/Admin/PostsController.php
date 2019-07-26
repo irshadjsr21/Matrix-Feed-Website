@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Http\Controllers\Controller;
 use App\Post;
 use App\Rules\CategoryId;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Validation\ValidationException;
 
 class PostsController extends Controller
 {
@@ -44,7 +45,7 @@ class PostsController extends Controller
     public function editPost(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'required|regex:/^[a-zA-Z0-9_()*\-.!&@$\s]*$/|max:255',
             'author' => 'required',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif',
             'body' => 'required',
@@ -53,6 +54,12 @@ class PostsController extends Controller
         ]);
 
         $post = Post::find($id);
+
+        $posts = Post::where([['title', $request->input('title')], ['id', '!=', $id]])->count();
+        if ($posts != 0) {
+            $error = ValidationException::withMessages(['title' => 'Post with this title already exists.']);
+            throw $error;
+        }
 
         $post->title = $request->input('title');
         $post->author = $request->input('author');
@@ -82,7 +89,7 @@ class PostsController extends Controller
     public function addPost(Request $request)
     {
         $request->validate([
-            'title' => 'required|unique:posts|max:255',
+            'title' => 'required|regex:/^[a-zA-Z0-9_()*\-.!&@$\s]*$/|unique:posts|max:255',
             'author' => 'required',
             'body' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif',

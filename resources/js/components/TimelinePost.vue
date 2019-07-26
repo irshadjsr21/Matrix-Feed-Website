@@ -1,6 +1,6 @@
 <template>
   <div class="timeline-post-container">
-    <a v-bind:href="'/posts/' + post.id" class="timeline-post">
+    <a v-bind:href="'/posts/' + encodeURI(post.title)" class="timeline-post">
       <div
         class="timeline-post-image"
         v-bind:style="{ backgroundImage: 'url(\'' + post.image + '\')' }"

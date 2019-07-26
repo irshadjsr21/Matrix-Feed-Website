@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Controller
 {
@@ -34,12 +35,20 @@ class CategoryController extends Controller
     public function editCategory(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|regex:/^[a-zA-Z0-9_()*\-.!&@$\s]*$/|max:255',
         ]);
+
+        $name = $request->input('name');
+
+        $categories = Category::where([['name', $name], ['id', '!=', $id]])->count();
+        if ($categories != 0) {
+            $error = ValidationException::withMessages(['name' => 'Category with this name already exists.']);
+            throw $error;
+        }
 
         $category = Category::find($id);
 
-        $category->name = $request->input('name');
+        $category->name = $name;
 
         $category->save();
 
@@ -56,7 +65,7 @@ class CategoryController extends Controller
     public function addCategory(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:categories|max:255',
+            'name' => 'required|regex:/^[a-zA-Z0-9_()*\-.!&@$\s]*$/|unique:categories|max:255',
         ]);
 
         $category = new Category;
