@@ -7,6 +7,10 @@
 require("./bootstrap");
 
 window.Vue = require("vue");
+window.encodeCustom = function(str) {
+  var enc = encodeURI(str.toLowerCase());
+  return enc.replace(/%20/g, "+");
+};
 
 /**
  * The following block of code may be used to automatically register your
