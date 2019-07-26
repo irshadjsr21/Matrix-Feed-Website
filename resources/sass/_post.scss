@@ -26,10 +26,31 @@
     width: 80%;
     margin: auto;
     font-size: 1.1rem;
+
+    .clap-icon {
+      width: 40px;
+      path {
+        fill: $body-bg;
+        stroke: black;
+        stroke-width: 8px;
+      }
+
+      &.liked {
+        path {
+          fill: $liked-color;
+          stroke: none;
+        }
+      }
+
+      &.loading {
+        opacity: 0.4;
+        cursor: progress;
+      }
+    }
   }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .post {
     .post-body {
       width: 100%;

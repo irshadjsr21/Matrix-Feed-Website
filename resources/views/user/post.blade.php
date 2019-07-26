@@ -17,6 +17,8 @@
     <div class="post-body">
         {!! $post->body !!}
 
+    <like-component v-bind:postid="{{ json_encode($post->id) }}" v-bind:user="{{ json_encode(Auth::user()) }}"><div class="loader loader-sm"></div></like-component>
+        
         <div class="social-links-container">
           <div>Share : </div>
           {!!
@@ -27,6 +29,7 @@
             ->whatsapp()
           !!}
         </div>
+
     </div>
   </div>
 @endsection
