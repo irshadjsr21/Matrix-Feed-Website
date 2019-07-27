@@ -26,10 +26,73 @@
     width: 80%;
     margin: auto;
     font-size: 1.1rem;
+
+    .clap-icon {
+      width: 40px;
+      path {
+        fill: $body-bg;
+        stroke: black;
+        stroke-width: 8px;
+      }
+
+      &.liked {
+        path {
+          fill: $liked-color;
+          stroke: none;
+        }
+      }
+
+      &.loading {
+        opacity: 0.4;
+        cursor: progress;
+      }
+    }
+
+    .comments-section {
+      .comment {
+        position: relative;
+        .comment-delete {
+          position: absolute;
+          top: 0;
+          right: 5px;
+          padding: 5px;
+          font-size: 1rem;
+          opacity: 0.6;
+        }
+
+        .comment-meta {
+          .name {
+            opacity: 0.6;
+            font-size: 0.8rem;
+          }
+
+          .time {
+            font-size: 0.7rem;
+            opacity: 0.6;
+          }
+        }
+
+        .comment-body {
+          font-size: 0.9rem;
+        }
+
+        &.comment-current-user {
+          background-color: #fff9ec;
+        }
+      }
+
+      .show-more {
+        background-color: $body-bg;
+        border: 1px solid #d4d4d4;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+      }
+    }
   }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .post {
     .post-body {
       width: 100%;

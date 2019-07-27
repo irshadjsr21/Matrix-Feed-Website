@@ -17,9 +17,11 @@
 
         <nav class="topbar-nav">
           <a href="/">Home</a>
-          @foreach ($categories as $category)
-            <a href="/category/{{ $category->slug() }}">{{ $category->name }}</a>              
-          @endforeach
+          @isset($categories)
+            @foreach ($categories as $category)
+              <a href="/category/{{ $category->slug() }}">{{ $category->name }}</a>              
+            @endforeach    
+          @endisset
         </nav>
       </div>
     </div>

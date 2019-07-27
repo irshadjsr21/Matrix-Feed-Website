@@ -10,7 +10,8 @@
                 <div class="card-body">
                     <form method="POST" action="/login">
                         @csrf
-
+                        <set-redirect></set-redirect>
+                        
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

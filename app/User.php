@@ -2,9 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -25,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'type'
+        'password', 'remember_token', 'type',
     ];
 
     /**
@@ -40,7 +39,18 @@ class User extends Authenticatable
     const ADMIN_TYPE = 'admin';
     const DEFAULT_TYPE = 'default';
 
-    public function isAdmin() {
+    public function isAdmin()
+    {
         return $this->type === self::ADMIN_TYPE;
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
     }
 }
