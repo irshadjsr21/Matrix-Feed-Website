@@ -47,6 +47,48 @@
         cursor: progress;
       }
     }
+
+    .comments-section {
+      .comment {
+        position: relative;
+        .comment-delete {
+          position: absolute;
+          top: 0;
+          right: 5px;
+          padding: 5px;
+          font-size: 1rem;
+          opacity: 0.6;
+        }
+
+        .comment-meta {
+          .name {
+            opacity: 0.6;
+            font-size: 0.8rem;
+          }
+
+          .time {
+            font-size: 0.7rem;
+            opacity: 0.6;
+          }
+        }
+
+        .comment-body {
+          font-size: 0.9rem;
+        }
+
+        &.comment-current-user {
+          background-color: #fff9ec;
+        }
+      }
+
+      .show-more {
+        background-color: $body-bg;
+        border: 1px solid #d4d4d4;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+      }
+    }
   }
 }
 

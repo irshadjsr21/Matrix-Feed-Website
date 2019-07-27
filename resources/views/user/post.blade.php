@@ -30,6 +30,9 @@
           !!}
         </div>
 
+    <comments-component v-bind:postid="{{ json_encode($post->id) }}" v-bind:user="{{ json_encode(Auth::user()) }}"><div class="loader loader-sm"></div></comments-component>
+
+
     </div>
   </div>
 @endsection

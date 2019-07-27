@@ -41,6 +41,7 @@ import LikeComponent from "./components/LikeComponent";
 import ClapIcon from "./components/ClapIcon";
 import SetRedirect from "./components/SetRedirect";
 import LoginRequestModal from "./components/LoginRequestModal";
+import CommentsComponent from "./components/CommentsComponent";
 
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 Vue.use(VueTruncate);
@@ -54,6 +55,7 @@ Vue.component("like-component", LikeComponent);
 Vue.component("clap-icon", ClapIcon);
 Vue.component("set-redirect", SetRedirect);
 Vue.component("login-modal", LoginRequestModal);
+Vue.component("comments-component", CommentsComponent);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
