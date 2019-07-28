@@ -85,7 +85,7 @@ class UserApiController extends Controller
         }
 
         if($password == $newPassword) {
-            return response(array('newPassword'=> 'New password cannot be same as old password.'), 401);            
+            return response(array('newPassword'=> 'New password cannot be same as old password.'), 400);            
         }
 
         Auth::user()->password = Hash::make($newPassword);

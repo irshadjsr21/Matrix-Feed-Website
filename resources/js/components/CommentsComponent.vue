@@ -68,7 +68,7 @@ export default {
 
   data() {
     return {
-      http: null,
+      http: window.axios,
       isLoading: true,
       newCommentText: null,
       isLoggedIn: this.user,
@@ -156,11 +156,6 @@ export default {
   },
 
   created() {
-    const csrfMeta = document.getElementById("csrf-token");
-    const csrf = csrfMeta.getAttribute("content");
-    this.http = axios.create({
-      headers: { "X-CSRF-TOKEN": csrf }
-    });
     this.getData();
   }
 };
