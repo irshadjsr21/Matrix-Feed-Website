@@ -44,12 +44,17 @@
         </div>
       </li>
     </ul>
-    <div class="row justify-content-center my-2">
-      <button class="show-more" @click="showMore()" v-bind:disabled="currentPage == lastPage">
-        <div v-if="isLoading" class="loader loader-sm"></div>
-        <div v-if="!isLoading">
+    <div class="row justify-content-center my-2 no-gutters">
+      <div v-if="isLoading" class="loader loader-sm"></div>
+      <button
+        v-if="!isLoading"
+        class="show-more"
+        @click="showMore()"
+        v-bind:disabled="currentPage == lastPage"
+      >
+        <div>
           <div v-if="currentPage != lastPage">Show More</div>
-          <div v-if="currentPage == lastPage">No more comments available.</div>
+          <div v-if="currentPage == lastPage">No more comments available</div>
         </div>
       </button>
     </div>
@@ -63,7 +68,7 @@ export default {
 
   data() {
     return {
-      http: null,
+      http: window.axios,
       isLoading: true,
       newCommentText: null,
       isLoggedIn: this.user,
@@ -85,7 +90,6 @@ export default {
         );
         this.comments = this.comments.concat(data.data.data);
         this.lastPage = data.data.last_page;
-        console.log(data);
         this.isLoading = false;
       } catch (error) {
         console.log(error);
@@ -140,7 +144,6 @@ export default {
       try {
         const data = await this.http.delete(this.url + "/" + id);
         this.comments = this.comments.filter(c => c.id != id);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -153,11 +156,6 @@ export default {
   },
 
   created() {
-    const csrfMeta = document.getElementById("csrf-token");
-    const csrf = csrfMeta.getAttribute("content");
-    this.http = axios.create({
-      headers: { "X-CSRF-TOKEN": csrf }
-    });
     this.getData();
   }
 };

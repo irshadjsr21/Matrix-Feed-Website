@@ -1,13 +1,15 @@
 <template>
-  <div class="row justify-content-center">
-    <clap-icon
-      v-if="!isLoading"
-      v-on:click="addLike()"
-      v-bind:liked="isLiked"
-      v-bind:isLoading="isProcessing"
-    />
+  <div>
+    <div v-if="!isLoading" class="row justify-content-center">
+      <div class="like-container">
+        <clap-icon v-on:click="addLike()" v-bind:liked="isLiked" v-bind:isLoading="isProcessing" />
+        <div class="like-count">{{totalLikes}}</div>
+      </div>
+    </div>
 
-    <div v-if="isLoading" class="loader loader-sm"></div>
+    <div v-if="isLoading" class="row justify-content-center">
+      <div class="loader loader-sm"></div>
+    </div>
   </div>
 </template>
 
@@ -18,13 +20,14 @@ export default {
   props: ["postid", "user"],
   data() {
     return {
-      http: null,
+      http: window.axios,
       isLiked: false,
       url: "/api/like/" + this.postid,
       isLoggedIn: this.user,
       currentUrl: window.location.pathname,
       isLoading: true,
-      isProcessing: false
+      isProcessing: false,
+      totalLikes: null
     };
   },
 
@@ -34,6 +37,7 @@ export default {
         const data = await this.http.get(this.url);
         if (data.data) {
           this.isLiked = data.data.liked;
+          this.totalLikes = data.data.total;
         }
         this.isLoading = false;
       } catch (error) {
@@ -55,6 +59,7 @@ export default {
         const data = await this.http.post(this.url);
         if (data.data) {
           this.isLiked = data.data.liked;
+          this.totalLikes = data.data.total;
         }
         this.isProcessing = false;
       } catch (error) {
@@ -65,16 +70,7 @@ export default {
   },
 
   created() {
-    if (this.isLoggedIn) {
-      const csrfMeta = document.getElementById("csrf-token");
-      const csrf = csrfMeta.getAttribute("content");
-      this.http = axios.create({
-        headers: { "X-CSRF-TOKEN": csrf }
-      });
-      this.getData();
-    } else {
-      this.isLoading = false;
-    }
+    this.getData();
   }
 };
 </script>

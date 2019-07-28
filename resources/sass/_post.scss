@@ -27,6 +27,18 @@
     margin: auto;
     font-size: 1.1rem;
 
+    .like-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .like-count {
+        font-size: 0.8rem;
+        color: $liked-color;
+      }
+    }
+
     .clap-icon {
       width: 40px;
       path {

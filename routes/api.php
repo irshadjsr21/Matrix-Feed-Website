@@ -22,7 +22,7 @@ Route::patch('/profile/email', 'UserApiController@patchEmail');
 Route::post('/profile/password', 'UserApiController@changePassword');
 
 Route::get('/like/{id}', 'LikeApiController@getLike');
-Route::post('/like/{id}', 'LikeApiController@addLike');
+Route::post('/like/{id}', 'LikeApiController@addLike')->middleware('auth');
 
 Route::get('/comment/{postId}', 'CommentsApiController@getComment');
 Route::post('/comment/{postId}', 'CommentsApiController@addComment')->middleware('auth');

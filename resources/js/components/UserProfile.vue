@@ -263,7 +263,7 @@ export default {
         isLoading: null,
         success: null
       },
-      http: null
+      http: window.axios
     };
   },
   methods: {
@@ -361,12 +361,5 @@ export default {
       this.passForm.password = this.passForm.newPassword = this.passForm.confirmPassword = null;
     }
   },
-  created() {
-    const csrfMeta = document.getElementById("csrf-token");
-    const csrf = csrfMeta.getAttribute("content");
-    this.http = axios.create({
-      headers: { "X-CSRF-TOKEN": csrf }
-    });
-  }
 };
 </script>
