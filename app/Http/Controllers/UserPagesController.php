@@ -69,4 +69,13 @@ class UserPagesController extends Controller
         );
         return view('user.profile', $data);
     }
+
+    public function showTermsAndConditions()
+    {
+        $data = array(
+            'SEO' => SEO::minimal('Terms And Conditions'),
+            'categories' => Category::all(),
+        );
+        return view('user.termsAndConditions', $data);
+    }
 }

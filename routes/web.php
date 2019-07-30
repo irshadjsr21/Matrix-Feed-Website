@@ -15,3 +15,4 @@ Route::get('/', 'UserPagesController@index');
 Route::get('/posts/{slug}', 'UserPagesController@showPost');
 Route::get('/category/{slug}', 'UserPagesController@categoryPage');
 Route::get('/profile', 'UserPagesController@showProfile')->middleware('auth');
+Route::get('/terms-and-conditions', 'UserPagesController@showTermsAndConditions')->middleware('auth');
