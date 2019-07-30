@@ -14,7 +14,19 @@
                 <form method="POST" action="/login">
                     @csrf
                     <set-redirect></set-redirect>
-                    
+
+                    <div class="row mb-2">
+                        <div class="col">
+                            <a href="/oauth/facebook" class="btn btn-fb btn-lg btn-block"> 
+                                <span class="mr-2"><i class="fab fa-facebook-f"></i></span> 
+                                <span>Login with Facebook</span></a>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col text-center">OR</div>
+                    </div>
+
                     <div class="form-group row">
                         <div class="col">
                             <input placeholder="Email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

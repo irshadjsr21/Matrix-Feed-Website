@@ -9,6 +9,7 @@ use App\Utils\SEO;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
+use Socialite;
 
 class AuthController extends Controller
 {
@@ -23,7 +24,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        //validate the fields....
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8',
@@ -87,6 +87,46 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        return redirect('/');
+    }
+
+    /**
+     * Redirect the user to the Facebook authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function facebookRedirect()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Facebook.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function facebookCallback()
+    {
+        $socialUser = Socialite::driver('facebook')->user();
+
+        $user = User::where('facebook_id', $socialUser->getId())->first();
+
+        if (!$user) {
+            $names = explode(' ', $socialUser->getName());
+            $firstName = $names[0];
+            $lastName = sizeof($names) > 1 ? $names[1] : null;
+            $fb_id = $socialUser->getId();
+            $user = User::create([
+                'email' => $socialUser->getEmail(),
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+            ]);
+            $user->facebook_id = $fb_id;
+            $user->save();
+        }
+
+        Auth::login($user);
+
         return redirect('/');
     }
 }

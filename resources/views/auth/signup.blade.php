@@ -16,6 +16,18 @@
                     @csrf
                     <set-redirect></set-redirect>
 
+                    <div class="row mb-2">
+                            <div class="col">
+                                <a href="/oauth/facebook" class="btn btn-fb btn-lg btn-block"> 
+                                    <span class="mr-2"><i class="fab fa-facebook-f"></i></span> 
+                                    <span>Signup with Facebook</span></a>
+                            </div>
+                        </div>
+    
+                        <div class="row mb-2">
+                            <div class="col text-center">OR</div>
+                        </div>
+
                     <div class="form-group row">
                         <div class="col">
                             <input placeholder="First Name" id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" autofocus>

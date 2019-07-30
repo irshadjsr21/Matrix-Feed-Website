@@ -5,3 +5,5 @@ Route::get('/signup', 'CustomAuth\AuthController@signupPage')->middleware('guest
 Route::post('/login', 'CustomAuth\AuthController@login');
 Route::post('/signup', 'CustomAuth\AuthController@signup');
 Route::post('/logout', 'CustomAuth\AuthController@logout');
+Route::get('/oauth/facebook', 'CustomAuth\AuthController@facebookRedirect');
+Route::get('/oauth/facebook/callback', 'CustomAuth\AuthController@facebookCallback');

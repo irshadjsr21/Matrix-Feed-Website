@@ -53,7 +53,8 @@ class UserApiController extends Controller
         return $user;
     }
 
-    public function patchEmail(Request $request) {
+    public function patchEmail(Request $request)
+    {
         $validation = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
         ]);
@@ -66,11 +67,16 @@ class UserApiController extends Controller
         return Auth::user();
     }
 
-    public function changePassword(Request $request) {
+    public function changePassword(Request $request)
+    {
+        if (Auth::user()->facebook_id) {
+            return response(array('password' => 'You cannot change your password since you are logged in with facebook.'), 400);
+        }
+
         $validation = Validator::make($request->all(), [
             'password' => 'required',
             'newPassword' => 'required|same:newPassword|min:8',
-            'confirmPassword' => 'required|same:newPassword',     
+            'confirmPassword' => 'required|same:newPassword',
         ]);
 
         $errors = $validation->errors();
@@ -80,12 +86,12 @@ class UserApiController extends Controller
 
         $password = $request->input('password');
         $newPassword = $request->input('newPassword');
-        if(!Hash::check($password, Auth::user()->password)) {
-            return response(array('password'=> 'Incorrect password.'), 401);            
+        if (!Hash::check($password, Auth::user()->password)) {
+            return response(array('password' => 'Incorrect password.'), 401);
         }
 
-        if($password == $newPassword) {
-            return response(array('newPassword'=> 'New password cannot be same as old password.'), 400);            
+        if ($password == $newPassword) {
+            return response(array('newPassword' => 'New password cannot be same as old password.'), 400);
         }
 
         Auth::user()->password = Hash::make($newPassword);
