@@ -1,6 +1,17 @@
 .copyright {
   background-color: $dark;
-  padding: 20px;
+  padding: 20px 10px;
   text-align: center;
   color: $light;
+
+  .line {
+    width: 10%;
+    height: 1px;
+    background-color: rgba($color: #fff, $alpha: 0.3);
+    margin: auto;
+  }
+
+  .links {
+    font-size: 0.8rem;
+  }
 }
