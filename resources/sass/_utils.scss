@@ -152,6 +152,10 @@
       color: white !important;
     }
   }
+
+  &.btn-social {
+    box-shadow: 1px 1px 6px 2px #0000001f;
+  }
 }
 
 @keyframes loader {
