@@ -22,7 +22,7 @@
         <div class="social-links-container">
           <div>Share : </div>
           {!!
-            Share::currentPage('Matrix Feed : ')
+            Share::currentPage('Checkout this awesome article I found on Matrix Feed : ')
             ->facebook()
             ->twitter()
             ->linkedin()
