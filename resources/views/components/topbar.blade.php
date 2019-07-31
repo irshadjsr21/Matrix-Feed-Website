@@ -3,9 +3,9 @@
     <div class="topbar">
       <div class="topbar-header">
         <input type="checkbox" id="nav-toggle" name="nav-toggle" class="nav-toggle-input">
-        <div class="logo">
-          <h1><span class="text-primary font-weight-bold">Matrix</span> Feed</h1>
-        </div>
+        <a href="/" class="logo">
+          <img src="/static images/logo.png" alt="Matrix Feed logo">
+        </a>
 
         <label for="nav-toggle" class="nav-toggle">
           <i class="fas fa-bars"></i>

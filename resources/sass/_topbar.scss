@@ -12,6 +12,11 @@
 
       .logo {
         @extend .col-sm-4, .col-6;
+
+        img {
+          width: 120px;
+          height: auto;
+        }
       }
 
       .nav-toggle {
@@ -70,6 +75,12 @@
   .topbar-container {
     .topbar {
       .topbar-header {
+        .logo {
+          img {
+            width: 100px;
+          }
+        }
+
         .ad-space {
           margin-bottom: 5px;
         }

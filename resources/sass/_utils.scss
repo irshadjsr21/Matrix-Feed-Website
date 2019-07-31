@@ -92,11 +92,10 @@
   border-radius: 5px;
   box-shadow: 1px 5px 9px 4px #36363673;
 
-  .auth-home-link {
-    color: white;
-    text-decoration: none;
-    :hover {
-      text-decoration: none;
+  .auth-logo {
+    img {
+      width: 150px;
+      height: auto;
     }
   }
 
