@@ -18,7 +18,7 @@
       </div>
       <div class="col-sm-4 col-12">
         <div class="icon-container">
-          <a href="#" target="blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.facebook.com/Matrixfeed-101557257861231/" target="blank"><i class="fab fa-facebook-f"></i></a>
           <a href="https://twitter.com/feed_matrix" target="blank"><i class="fab fa-twitter"></i></a>
           <a href="#" target="blank"><i class="fab fa-youtube"></i></a>
         </div>
