@@ -19,20 +19,20 @@ class SEO
     public static function post($post, $url)
     {
         $fullImgUrl = URL::to('/') . $post->image;
-        return self::createObj($post->title, $post->description, $fullImgUrl, $url, $post->created_at, 'article', false);
+        return self::createObj($post->title, $post->description, $fullImgUrl, $url, $post->keywords, $post->created_at, 'article', false);
     }
 
     public static function home($url)
     {
-        return self::createObj(self::$default['title'], self::$default['content'], self::$default['image'], $url, null, 'website', false);
+        return self::createObj(self::$default['title'], self::$default['content'], self::$default['image'], self::$default['keywords'], $url, null, 'website', false);
     }
 
     public static function minimal($title)
     {
-        return self::createObj($title, self::$default['content'], null, null, null, 'website', true);
+        return self::createObj($title, self::$default['content'], null, null, null, null, 'website', true);
     }
 
-    public static function createObj($title, $content, $image, $url, $date, $type, $isMinimal)
+    public static function createObj($title, $content, $image, $url, $keywords, $date, $type, $isMinimal)
     {
         $SEO = array(
             'title' => $title,
@@ -43,7 +43,7 @@ class SEO
             'type' => $type,
             'twitterUsername' => self::$twitterUsername,
             'fbId' => self::$fbId,
-            'keywords' => self::$default['keywords'],
+            'keywords' => $keywords,
             'date' => null,
             'isMinimal' => $isMinimal,
         );
