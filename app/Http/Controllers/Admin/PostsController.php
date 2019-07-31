@@ -50,6 +50,7 @@ class PostsController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif',
             'body' => 'required',
             'description' => 'required',
+            'keywords' => 'required',
             'category' => ['required', new CategoryId],
         ]);
 
@@ -66,6 +67,7 @@ class PostsController extends Controller
         $post->category_id = $request->input('category');
         $post->body = $request->input('body');
         $post->description = $request->input('description');
+        $post->keywords = $request->input('keywords');
 
         if ($request->has('image') && $request->file('image')) {
             $image = $request->file('image');
@@ -94,6 +96,7 @@ class PostsController extends Controller
             'body' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif',
             'description' => 'required',
+            'keywords' => 'required',
             'category' => ['required', new CategoryId],
         ]);
 
@@ -103,6 +106,7 @@ class PostsController extends Controller
         $post->category_id = $request->input('category');
         $post->body = $request->input('body');
         $post->description = $request->input('description');
+        $post->keywords = $request->input('keywords');
 
         if ($request->has('image')) {
             $image = $request->file('image');

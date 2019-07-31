@@ -99,6 +99,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="keywords" class="col-2 col-form-label text-md-right">{{ __('Keywords') }}</label>
+  
+                            <div class="col-10">
+                                    <input id="keywords" type="text" class="form-control @error('keywords') is-invalid @enderror" name="keywords" value="{{ old('keywords') }}" autocomplete="keywords" autofocus>
+  
+                                @error('keywords')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                       <div class="form-group row mb-0">
                           <div class="col-md-10 offset-md-2">
                               <button type="submit" class="btn btn-primary">

@@ -6,7 +6,7 @@
         <div class="auth-card-row">
             <div class="auth-l-col auth-bg">
                 <div class="row justify-content-center align-items-center m-0 w-100 h-100">
-                    <h1 class="text-center m-0"><a href="/" class="auth-home-link">Matrix Feed</a></h1>
+                    <a href="/" class="auth-logo"><img src="/static images/Logo-circle.png" alt="Matrix Feed Logo"></a>
                 </div>
             </div>
             <div class="auth-r-col">
