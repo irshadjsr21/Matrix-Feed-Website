@@ -16,6 +16,34 @@
                     @csrf
                     <set-redirect></set-redirect>
 
+                    <div class="row mb-2">
+                        <div class="col">
+                            <a href="/oauth/facebook" class="btn btn-fb btn-lg btn-social btn-block"> 
+                                <span class="mr-2"><i class="fab fa-facebook-f"></i></span> 
+                                <span>Signup with Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+    
+                    <div class="row mb-2">
+                        <div class="col">
+                            <a href="/oauth/google" class="btn btn-lg btn-social btn-block d-flex justify-content-center align-items-center"> 
+                                <span class="mr-2"><img width="25" height="25" src="/static images/google.png" alt="Google logo" /></span> 
+                                <span>Signup with Google</span>
+                            </a>
+                        </div>
+                    </div>
+    
+                    @error('oAuth')
+                        <span class="invalid-feedback text-center" style="display:block;" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+                    <div class="row mb-2">
+                        <div class="col text-center">OR</div>
+                    </div>
+
                     <div class="form-group row">
                         <div class="col">
                             <input placeholder="First Name" id="firstName" type="text" class="form-control @error('firstName') is-invalid @enderror" name="firstName" value="{{ old('firstName') }}" required autocomplete="firstName" autofocus>

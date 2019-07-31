@@ -9,6 +9,7 @@ use App\Utils\SEO;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
+use Socialite;
 
 class AuthController extends Controller
 {
@@ -23,7 +24,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        //validate the fields....
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8',
@@ -87,6 +87,96 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        return redirect('/');
+    }
+
+    /**
+     * Redirect the user to the Facebook authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function facebookRedirect()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Facebook.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function facebookCallback()
+    {
+        $socialUser = Socialite::driver('facebook')->user();
+
+        $user = User::where('facebook_id', $socialUser->getId())->first();
+
+        if (!$user) {
+            $withSameEmail = User::where('email', $socialUser->getEmail())->count();
+            if ($withSameEmail) {
+                return redirect('/login')->withErrors(array('oAuth' => 'User with this email already exists.'));
+            }
+            $names = explode(' ', $socialUser->getName());
+            $firstName = $names[0];
+            $lastName = sizeof($names) > 1 ? $names[1] : null;
+            $fb_id = $socialUser->getId();
+            $user = User::create([
+                'email' => $socialUser->getEmail(),
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+            ]);
+            $user->facebook_id = $fb_id;
+            $user->social_email = $socialUser->getEmail();
+            $user->save();
+        }
+
+        Auth::login($user);
+
+        return redirect('/');
+    }
+
+    /**
+     * Redirect the user to the Google authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function googleRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Google.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function googleCallback()
+    {
+        $socialUser = Socialite::driver('google')->user();
+
+        $user = User::where('google_id', $socialUser->getId())->first();
+
+        if (!$user) {
+            $withSameEmail = User::where('email', $socialUser->getEmail())->count();
+            if ($withSameEmail) {
+                return redirect('/login')->withErrors(array('oAuth' => 'User with this email already exists.'));
+            }
+            $names = explode(' ', $socialUser->getName());
+            $firstName = $names[0];
+            $lastName = sizeof($names) > 1 ? $names[1] : null;
+            $google_id = $socialUser->getId();
+            $user = User::create([
+                'email' => $socialUser->getEmail(),
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+            ]);
+            $user->google_id = $google_id;
+            $user->social_email = $socialUser->getEmail();
+            $user->save();
+        }
+
+        Auth::login($user);
+
         return redirect('/');
     }
 }

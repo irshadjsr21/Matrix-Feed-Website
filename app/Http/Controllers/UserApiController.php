@@ -53,7 +53,8 @@ class UserApiController extends Controller
         return $user;
     }
 
-    public function patchEmail(Request $request) {
+    public function patchEmail(Request $request)
+    {
         $validation = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
         ]);
@@ -63,14 +64,27 @@ class UserApiController extends Controller
             return response($errors->toJson(), 400);
         }
 
+        Auth::user()->email = $request->email;
+        Auth::user()->save();
+
         return Auth::user();
     }
 
-    public function changePassword(Request $request) {
+    public function changePassword(Request $request)
+    {
+        $user = Auth::user();
+        if ($user->facebook_id) {
+            return response(array('password' => 'You cannot change your password since you are logged in with facebook.'), 400);
+        }
+
+        if ($user->google_id) {
+            return response(array('password' => 'You cannot change your password since you are logged in with google.'), 400);
+        }
+
         $validation = Validator::make($request->all(), [
             'password' => 'required',
             'newPassword' => 'required|same:newPassword|min:8',
-            'confirmPassword' => 'required|same:newPassword',     
+            'confirmPassword' => 'required|same:newPassword',
         ]);
 
         $errors = $validation->errors();
@@ -80,16 +94,16 @@ class UserApiController extends Controller
 
         $password = $request->input('password');
         $newPassword = $request->input('newPassword');
-        if(!Hash::check($password, Auth::user()->password)) {
-            return response(array('password'=> 'Incorrect password.'), 401);            
+        if (!Hash::check($password, $user->password)) {
+            return response(array('password' => 'Incorrect password.'), 401);
         }
 
-        if($password == $newPassword) {
-            return response(array('newPassword'=> 'New password cannot be same as old password.'), 400);            
+        if ($password == $newPassword) {
+            return response(array('newPassword' => 'New password cannot be same as old password.'), 400);
         }
 
-        Auth::user()->password = Hash::make($newPassword);
-        Auth::user()->save();
+        $user->password = Hash::make($newPassword);
+        $user->save();
 
         return 'Password changed successfully.';
     }
