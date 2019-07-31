@@ -24,12 +24,6 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-7754593401653923",
-            enable_page_level_ads: true
-        });
-        </script>        
         @yield('head')
     </head>
     <body>

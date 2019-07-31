@@ -27,8 +27,9 @@
         @yield('head')
     </head>
     <body>
-        <div class="auth-page-bg">
+        <div id="app" class="auth-page-bg">
           @yield('content')
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
