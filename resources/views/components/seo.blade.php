@@ -16,7 +16,7 @@
 
 @if ($SEO['image'])
   <meta property="og:image" content="{{ $SEO['image'] }}" />
-  <meta name="twitter:image"  content="{{ $SEO['image'] }}"> 
+  <meta name="twitter:image:src"  content="{{ $SEO['image'] }}"> 
 @endif
 
 @if(!$SEO['isMinimal'])
@@ -26,7 +26,7 @@
   <meta property="og:site_name" content="{{ $SEO['siteName'] }}" />
   <meta property="fb:app_id"  content="{{ $SEO['fbId'] }}" />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{ $SEO['title'] }}" />
   <meta name="twitter:site" content="{{ $SEO['twitterUsername'] }}" />
   <meta name="twitter:creator"  content="{{ $SEO['twitterUsername'] }}"/>

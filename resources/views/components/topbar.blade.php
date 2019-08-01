@@ -4,7 +4,7 @@
       <div class="topbar-header">
         <input type="checkbox" id="nav-toggle" name="nav-toggle" class="nav-toggle-input">
         <a href="/" class="logo">
-          <img src="/static images/logo.png" alt="Matrix Feed logo">
+          <img src="/static images/Logo.png" alt="Matrix Feed logo">
         </a>
 
         <label for="nav-toggle" class="nav-toggle">

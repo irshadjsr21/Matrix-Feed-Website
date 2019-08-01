@@ -9,8 +9,9 @@ class SEO
     private static $default = array(
         'title' => 'Matrix Feed',
         'content' => 'MATRIXFEED is a website that will provide you the best and most efficient articles about all the topics you are eager to know about. Our motive is to share the information and knowledge to our greatest extent. We have the best brains working for you and your queries.',
-        'image' => '',
-        'keywords' => '',
+        'image' => '/static images/seo-image.png',
+        'keywords' => 'MatrixFeed, Best Article Site, Fresh And Updated Article, Matrixfeed, Article On Technology, Article on Bussiness, Article On Education, And Miscellaneous, Devloped your Skill, Rich article,
+        Neat and Clean Environment, Genuine Article, Matrix+Feed, feed+Matrix=Matrixfeed, Raghib Sultan, Raza Ali, Irshad Ansari, M47R1XF33D=Matrixfeed',
     );
     private static $siteName = 'Matrix Feed';
     private static $fbId = '365090877489585';
@@ -24,7 +25,7 @@ class SEO
 
     public static function home($url)
     {
-        return self::createObj(self::$default['title'], self::$default['content'], self::$default['image'], self::$default['keywords'], $url, null, 'website', false);
+        return self::createObj(self::$default['title'], self::$default['content'], env('APP_URL') . '' . self::$default['image'], $url, self::$default['keywords'], null, 'website', false);
     }
 
     public static function minimal($title)
