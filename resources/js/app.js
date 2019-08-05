@@ -43,6 +43,7 @@ import SetRedirect from "./components/SetRedirect";
 import LoginRequestModal from "./components/LoginRequestModal";
 import CommentsComponent from "./components/CommentsComponent";
 import TruncateText from "./components/TruncateText";
+import AlertBox from "./components/AlertBox";
 
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 Vue.use(VueTruncate);
@@ -58,6 +59,7 @@ Vue.component("set-redirect", SetRedirect);
 Vue.component("login-modal", LoginRequestModal);
 Vue.component("comments-component", CommentsComponent);
 Vue.component("truncate-text", TruncateText);
+Vue.component("alert-box", AlertBox);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
