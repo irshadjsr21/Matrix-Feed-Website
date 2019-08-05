@@ -2,7 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1>Posts</h1><br>
+    <h1 class="row justify-content-between">
+        <div class="col">Posts</div>     
+        <div class="col text-right"><a href="/admin/posts/add" class="btn btn-primary">Add New</a></div>
+    </h1>
+    <br>
+
     @if( count($posts) > 0)
         @foreach($posts as $post)
             <div class="card mb-2">

@@ -4,6 +4,7 @@
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-12">
+        <input type="button" class="btn btn-light text-dark mb-2" value="Go Back" onclick="history.back(-1)" />
           <div class="card">
               <div class="card-header">{{ __('Edit Post') }}</div>
 
@@ -12,9 +13,9 @@
                       @csrf
 
                       <div class="form-group row">
-                          <label for="title" class="col-2 col-form-label text-md-right">{{ __('Title') }}</label>
+                          <label for="title" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Title') }}</label>
 
-                          <div class="col-10">
+                          <div class="col-12 col-md-10">
                               <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $post->title }}" autocomplete="title" autofocus>
 
                               @error('title')
@@ -26,9 +27,9 @@
                       </div>
 
                       <div class="form-group row">
-                          <label for="author" class="col-2 col-form-label text-md-right">{{ __('Author') }}</label>
+                          <label for="author" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Author') }}</label>
 
-                          <div class="col-10">
+                          <div class="col-12 col-md-10">
                               <input id="author" type="text" class="form-control @error('author') is-invalid @enderror" name="author" value="{{ $post->author }}" autocomplete="author" autofocus>
 
                               @error('author')
@@ -40,9 +41,9 @@
                       </div>
 
                       <div class="form-group row">
-                              <label for="image" class="col-2 col-form-label text-md-right">{{ __('Image') }}</label>
+                              <label for="image" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Image') }}</label>
     
-                              <div class="col-10">
+                              <div class="col-12 col-md-10">
                                   <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" name="image" autofocus>
     
                                   @error('image')
@@ -55,9 +56,9 @@
 
                           
                         <div class="form-group row">
-                                <label for="category" class="col-2 col-form-label text-md-right">{{ __('Category') }}</label>
+                                <label for="category" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Category') }}</label>
 
-                                <div class="col-10">
+                                <div class="col-12 col-md-10">
                                     <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" autofocus>
                                         @foreach ($categories as $category)
                                           @if ($category->id == $post->category_id)
@@ -77,9 +78,9 @@
                         </div>
 
                       <div class="form-group row">
-                          <label for="body" class="col-2 col-form-label text-md-right">{{ __('Body') }}</label>
+                          <label for="body" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Body') }}</label>
 
-                          <div class="col-10">
+                          <div class="col-12 col-md-10">
                               <textarea id="text-editor" type="text" class="form-control @error('body') is-invalid @enderror" name="body" autocomplete="current-body">{{$post->body}}</textarea>
 
                               @error('body')
@@ -91,9 +92,9 @@
                       </div>
 
                         <div class="form-group row">
-                            <label for="description" class="col-2 col-form-label text-md-right">{{ __('Description') }}</label>
+                            <label for="description" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Description') }}</label>
 
-                            <div class="col-10">
+                            <div class="col-12 col-md-10">
                                 <textarea id="text-editor" type="text" class="form-control @error('description') is-invalid @enderror" name="description" autocomplete="current-description">{{$post->description}}</textarea>
 
                                 @error('description')
@@ -105,9 +106,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="keywords" class="col-2 col-form-label text-md-right">{{ __('Keywords') }}</label>
+                            <label for="keywords" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Keywords') }}</label>
     
-                            <div class="col-10">
+                            <div class="col-12 col-md-10">
                                 <input id="keywords" type="text" class="form-control @error('keywords') is-invalid @enderror" name="keywords" value="{{ $post->keywords }}" autocomplete="keywords" autofocus>
     
                                 @error('keywords')
@@ -120,9 +121,16 @@
   
                       <div class="form-group row mb-0">
                           <div class="col-md-10 offset-md-2">
-                              <button type="submit" class="btn btn-primary">
-                                  {{ __('Submit') }}
-                              </button>
+                              <div class="row justify-content-between">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Submit') }}
+                                    </button>
+                                </div>
+                                <div class="col text-right">
+                                    <input class="btn btn-danger" type="button" value="Cancle" onclick="history.back(-1)"/>
+                                </div> 
+                              </div>
                           </div>
                       </div>
                   </form>

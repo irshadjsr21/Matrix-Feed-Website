@@ -77,12 +77,6 @@
                                     <a class="dropdown-item" href="/admin/category">
                                         {{ __('Categories') }}
                                     </a>
-                                    <a class="dropdown-item" href="/admin/posts/add">
-                                    {{ __('Add Post') }}
-                                    </a>
-                                    <a class="dropdown-item" href="/admin/category/add">
-                                       {{ __('Add Category') }}
-                                   </a>
                                     <a class="dropdown-item" href="/logout"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
