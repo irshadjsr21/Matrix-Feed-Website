@@ -3,7 +3,7 @@
       <div class="topbar">
         <div class="topbar-header">
           <input type="checkbox" id="nav-toggle" name="nav-toggle" class="nav-toggle-input">
-          <a href="/" class="logo">
+          <a href="/admin" class="logo">
             <img src="/static images/Logo.png" alt="Matrix Feed logo">
           </a>
   
