@@ -9,14 +9,31 @@
     <br>
 
     @if( count($posts) > 0)
-        @foreach($posts as $post)
-            <div class="card mb-2">
-                <div class="card-body">
-                <h3 class="card-title"><a href="/admin/posts/{{$post->id}}" class="text-dark">{{$post->title}}</a></h3>
-                <h6 class="card-subtitle text-muted mb-2">Written on {{$post->created_at}}</h6>
-            </div>
-            </div>
-        @endforeach
+        <div class="row">
+            @foreach($posts as $post)
+                <div class="col-md-4 align-items-strech mb-4">
+                    <div class="card h-100">
+                        <img src="{{$post->image}}" height="200" class="card-img-top" alt=""/>
+                        <div class="card-body">
+                          <h5 class="card-title">{{ $post->title }}</h5>
+                          <p class="card-text"><truncate-text v-bind:text="{{ json_encode($post->description) }}" v-bind:len="150" /></p>
+                          <div class="text-muted text-right mb-2">- {{ $post->author }}</div>
+                          <div class="text-muted mb-4">
+                              <div>Created on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->created_at) }}"></date-format></div>
+                              <div>Updated on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->updated_at) }}"></date-format></div>
+                          </div>
+                        </div>
+                        <div class="w-100 pl-4 pr-4 pb-4" style="margin-top: -1.25rem"><a href="/admin/posts/{{$post->id}}" class="w-100 btn btn-primary">View</a></div>
+                    </div>
+                </div>
+                {{-- <div class="card mb-2">
+                    <div class="card-body">
+                    <h3 class="card-title"><a href="/admin/posts/{{$post->id}}" class="text-dark">{{$post->title}}</a></h3>
+                    <h6 class="card-subtitle text-muted mb-2">Written on {{$post->created_at}}</h6>
+                </div>
+                </div> --}}
+            @endforeach
+        </div>
     @else
         <p>No post found</p>
     @endif

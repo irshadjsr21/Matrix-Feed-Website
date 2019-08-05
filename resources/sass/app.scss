@@ -19,3 +19,9 @@ body,
 html {
   min-height: 100vh;
 }
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}

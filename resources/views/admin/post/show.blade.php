@@ -3,10 +3,44 @@
 @section('content')
 <div class="container">
     <a href="/admin/posts" class="btn btn-light text-dark mb-2">Go Back</a>
-    <div class="card mb-2">
-        <h1 class="card-header">{{$post->title}}</h1>
-        <div class="card-body">{!!$post->body!!}</div>
-    <h6 class="card-subtitle text-muted text-right mr-4 mb-2">Written on {{$post->created_at}}</h6>
+    <h1>{{ $post->title }}</h1>
+    <br>
+    
+    <div class="card mb-4">
+      <h4 class="card-header">Body</h4>
+      <div class="card-body">
+        <div>{!! $post->body !!}</div>
+        <div class="text-muted text-right mr-4 mb-4">- {{ $post->author }}</div>
+        <div class="card-subtitle text-muted text-right mr-4 mb-2">Created on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->created_at) }}"/></div>
+        <div class="card-subtitle text-muted text-right mr-4 mb-2">Updated on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->updated_at) }}"/></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Image</h4>
+          <div class="card-body">
+            <div class="row justify-content-center p-4"><img src="{{$post->image}}" class="w-100" alt="{{ $post->title }}"/></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Description</h4>
+          <div class="card-body">
+            {{ $post->description }}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Keywords</h4>
+          <div class="card-body">
+            {{ $post->keywords }}
+          </div>
+        </div>
+      </div>
     </div>
     <a href="/admin/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
   <form action="/admin/posts/{{$post->id}}/delete" method="post" class="float-right">
