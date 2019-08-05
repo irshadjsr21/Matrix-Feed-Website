@@ -7,7 +7,8 @@
         <div class="col">{{ $category->name }}</div>     
         <div class="col text-right"><a href="/admin/posts/add" class="btn btn-primary">Add Post</a></div>
     </h1>
-
+    
+    <br>
     @if( count($posts) > 0)
     <h2 class="text-center">Posts in this category</h2>
     <br>

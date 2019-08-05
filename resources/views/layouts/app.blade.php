@@ -26,7 +26,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Matrix Feed</title>
+    <title>Matrix Feed Admin Panel</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -37,7 +37,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/admin') }}">
                     Matrix Feed
@@ -92,7 +92,10 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
+
+        @include('admin.header')
+        @include('admin.topbar')
 
         <main class="py-4">
             <div class="container py-4">
@@ -117,6 +120,8 @@
 
             @yield('content')
         </main>
+
+        @include('components.copyright')
     </div>
     <script>
     tinymce.init({
