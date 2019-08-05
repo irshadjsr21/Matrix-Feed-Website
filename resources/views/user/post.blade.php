@@ -21,13 +21,7 @@
         
         <div class="social-links-container">
           <div>Share : </div>
-          {!!
-            Share::currentPage('Checkout this awesome article I found on Matrix Feed : ')
-            ->facebook()
-            ->twitter()
-            ->linkedin()
-            ->whatsapp()
-          !!}
+          <social-share v-bind:post="{{ json_encode($post) }}"></social-share>
         </div>
 
     <comments-component v-bind:postid="{{ json_encode($post->id) }}" v-bind:user="{{ json_encode(Auth::user()) }}"><div class="loader loader-sm"></div></comments-component>

@@ -31,6 +31,7 @@ window.getUrlParameter = function(name) {
 
 import VueTruncate from "vue-truncate-filter";
 import VModal from "vue-js-modal";
+import SocialSharing from "vue-social-sharing";
 import Showcase from "./components/PostShowcase";
 import TimelinePost from "./components/TimelinePost";
 import Timeline from "./components/Timeline";
@@ -44,9 +45,11 @@ import LoginRequestModal from "./components/LoginRequestModal";
 import CommentsComponent from "./components/CommentsComponent";
 import TruncateText from "./components/TruncateText";
 import AlertBox from "./components/AlertBox";
+import SocialShare from "./components/SocialShare";
 
 Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 Vue.use(VueTruncate);
+Vue.use(SocialSharing);
 Vue.component("post-showcase", Showcase);
 Vue.component("timeline-post", TimelinePost);
 Vue.component("timeline-list", Timeline);
@@ -60,6 +63,7 @@ Vue.component("login-modal", LoginRequestModal);
 Vue.component("comments-component", CommentsComponent);
 Vue.component("truncate-text", TruncateText);
 Vue.component("alert-box", AlertBox);
+Vue.component("social-share", SocialShare);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
