@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <a href="/admin/posts" class="btn btn-light text-dark mb-2">Go Back</a>
+    <input type="button" class="btn btn-light text-dark mb-2" value="Go Back" onclick="history.back(-1)" />
     <h1>{{ $post->title }}</h1>
     <br>
     
@@ -41,7 +41,19 @@
           </div>
         </div>
       </div>
+
+      @isset($category)
+        <div class="col-12 col-md-6 mb-4">
+          <div class="card h-100">
+            <h4 class="card-header">Category</h4>
+            <div class="card-body">
+              {{ $category->name }}
+            </div>
+          </div>
+        </div>
+      @endisset
     </div>
+    
     <a href="/admin/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
   <form action="/admin/posts/{{$post->id}}/delete" method="post" class="float-right">
     @csrf

@@ -23,7 +23,13 @@ class CategoryController extends Controller
     public function showCategory(Request $request, $id)
     {
         $category = Category::find($id);
-        return view('admin.category.show')->with('category', $category);
+        $posts = $category->posts;
+        $data = array(
+            'category' => $category,
+            'posts' => $posts,
+        );
+
+        return view('admin.category.show')->with($data);
     }
 
     public function editCategoryPage(Request $request, $id)

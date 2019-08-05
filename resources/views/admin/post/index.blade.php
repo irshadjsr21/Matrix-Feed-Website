@@ -13,7 +13,7 @@
             @foreach($posts as $post)
                 <div class="col-md-4 align-items-strech mb-4">
                     <div class="card h-100">
-                        <img src="{{$post->image}}" height="200" class="card-img-top" alt=""/>
+                        <img src="{{ $post->image }}" height="200" class="card-img-top" alt="{{ $post->title }}"/>
                         <div class="card-body">
                           <h5 class="card-title">{{ $post->title }}</h5>
                           <p class="card-text"><truncate-text v-bind:text="{{ json_encode($post->description) }}" v-bind:len="150" /></p>
@@ -26,12 +26,6 @@
                         <div class="w-100 pl-4 pr-4 pb-4" style="margin-top: -1.25rem"><a href="/admin/posts/{{$post->id}}" class="w-100 btn btn-primary">View</a></div>
                     </div>
                 </div>
-                {{-- <div class="card mb-2">
-                    <div class="card-body">
-                    <h3 class="card-title"><a href="/admin/posts/{{$post->id}}" class="text-dark">{{$post->title}}</a></h3>
-                    <h6 class="card-subtitle text-muted mb-2">Written on {{$post->created_at}}</h6>
-                </div>
-                </div> --}}
             @endforeach
         </div>
     @else
