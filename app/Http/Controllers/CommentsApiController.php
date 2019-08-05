@@ -67,9 +67,9 @@ class CommentsApiController extends Controller
             return response($error->toJson(), 404);
         }
 
-        $comment = Comment::where([['post_id', $postId], ['id', $commentId], ['user_id', Auth::user()->id]])->first();
+        $comment = Comment::where([['post_id', $postId], ['id', $commentId]])->first();
 
-        if (!$comment) {
+        if (!$comment || ($comment->user_id != Auth::user()->id && !Auth::user()->isAdmin())) {
             $error = array('commentId' => 'The given comment does not exist.');
             return response($error->toJson(), 404);
         }

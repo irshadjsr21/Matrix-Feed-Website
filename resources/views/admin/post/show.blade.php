@@ -17,19 +17,19 @@
     </div>
 
     <div class="row">
+      <div class="col-12 mb-4">
+          <div class="card h-100">
+            <h4 class="card-header">Description</h4>
+            <div class="card-body">
+              {{ $post->description }}
+            </div>
+          </div>
+      </div>
       <div class="col-12 col-md-6 mb-4">
         <div class="card h-100">
           <h4 class="card-header">Image</h4>
           <div class="card-body">
             <div class="row justify-content-center p-4"><img src="{{$post->image}}" class="w-100" alt="{{ $post->title }}"/></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Description</h4>
-          <div class="card-body">
-            {{ $post->description }}
           </div>
         </div>
       </div>
@@ -41,7 +41,6 @@
           </div>
         </div>
       </div>
-
       @isset($category)
         <div class="col-12 col-md-6 mb-4">
           <div class="card h-100">
@@ -52,6 +51,22 @@
           </div>
         </div>
       @endisset
+      <div class="col-12 col-md-6 mb-4">
+          <div class="card h-100">
+            <h4 class="card-header">Likes</h4>
+            <div class="card-body">
+                <like-component v-bind:postid="{{ json_encode($post->id) }}" v-bind:user="{{ json_encode(Auth::user()) }}"><div class="loader loader-sm"></div></like-component>
+            </div>
+          </div>
+      </div>
+      <div class="col-12 mb-4">
+          <div class="card h-100">
+            <h4 class="card-header">Comments</h4>
+            <div class="card-body">
+                <comments-component v-bind:postid="{{ json_encode($post->id) }}" v-bind:user="{{ json_encode(Auth::user()) }}" v-bind:isadmin="true"><div class="loader loader-sm"></div></comments-component>
+            </div>
+          </div>
+      </div>
     </div>
     
     <a href="/admin/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>

@@ -26,81 +26,81 @@
     width: 80%;
     margin: auto;
     font-size: 1.1rem;
+  }
+}
 
-    .like-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+.like-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-      .like-count {
-        font-size: 0.8rem;
-        color: $liked-color;
-      }
+  .like-count {
+    font-size: 0.8rem;
+    color: $liked-color;
+  }
+
+  .clap-icon {
+    width: 40px;
+    path {
+      fill: $body-bg;
+      stroke: black;
+      stroke-width: 8px;
     }
 
-    .clap-icon {
-      width: 40px;
+    &.liked {
       path {
-        fill: $body-bg;
-        stroke: black;
-        stroke-width: 8px;
-      }
-
-      &.liked {
-        path {
-          fill: $liked-color;
-          stroke: none;
-        }
-      }
-
-      &.loading {
-        opacity: 0.4;
-        cursor: progress;
+        fill: $liked-color;
+        stroke: none;
       }
     }
 
-    .comments-section {
-      .comment {
-        position: relative;
-        .comment-delete {
-          position: absolute;
-          top: 0;
-          right: 5px;
-          padding: 5px;
-          font-size: 1rem;
-          opacity: 0.6;
-        }
+    &.loading {
+      opacity: 0.4;
+      cursor: progress;
+    }
+  }
+}
 
-        .comment-meta {
-          .name {
-            opacity: 0.6;
-            font-size: 0.8rem;
-          }
+.comments-section {
+  .comment {
+    position: relative;
+    .comment-delete {
+      position: absolute;
+      top: 0;
+      right: 5px;
+      padding: 5px;
+      font-size: 1rem;
+      opacity: 0.6;
+    }
 
-          .time {
-            font-size: 0.7rem;
-            opacity: 0.6;
-          }
-        }
-
-        .comment-body {
-          font-size: 0.9rem;
-        }
-
-        &.comment-current-user {
-          background-color: #fff9ec;
-        }
+    .comment-meta {
+      .name {
+        opacity: 0.6;
+        font-size: 0.8rem;
       }
 
-      .show-more {
-        background-color: $body-bg;
-        border: 1px solid #d4d4d4;
-        width: 100%;
-        text-align: center;
-        padding: 10px;
+      .time {
+        font-size: 0.7rem;
+        opacity: 0.6;
       }
     }
+
+    .comment-body {
+      font-size: 0.9rem;
+    }
+
+    &.comment-current-user {
+      background-color: #fff9ec;
+    }
+  }
+
+  .show-more {
+    background-color: $body-bg;
+    border: 1px solid #d4d4d4;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
   }
 }
 
