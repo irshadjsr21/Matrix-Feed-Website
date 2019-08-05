@@ -27,7 +27,12 @@ class PostsController extends Controller
     public function showPost(Request $request, $id)
     {
         $post = Post::find($id);
-        return view('admin.post.show')->with('post', $post);
+        $category = $post->category;
+        $data = array(
+            'post' => $post,
+            'category' => $category,
+        );
+        return view('admin.post.show')->with($data);
     }
 
     public function editPostPage(Request $request, $id)

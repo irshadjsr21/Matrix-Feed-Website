@@ -1,6 +1,6 @@
 <template>
   <div class="comments-section my-4">
-    <div class="form-group">
+    <div v-if="!isadmin" class="form-group">
       <textarea
         name="comment"
         class="form-control mb-2"
@@ -30,7 +30,7 @@
       >
         <div
           class="comment-delete clickable"
-          v-if="user && comment.user_id == user.id"
+          v-if="(user && comment.user_id == user.id) || isadmin"
           @click="deleteComment(comment.id)"
         >
           <i class="fas fa-trash-alt"></i>
@@ -64,7 +64,7 @@
 <script>
 import LoginRequestModalVue from "./LoginRequestModal.vue";
 export default {
-  props: ["postid", "user"],
+  props: ["postid", "user", "isadmin"],
 
   data() {
     return {

@@ -26,104 +26,34 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Matrix Feed</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.tiny.cloud/1/mw4yr1zjxr8kgbdx652xu1zl3a3bgeo24g3easwbuavowx2d/tinymce/5/tinymce.min.js"></script> 
+    <title>Matrix Feed Admin Panel</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/admin') }}">
-                    Matrix Feed
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->firstName }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/admin/posts">
-                                        {{ __('Posts') }}
-                                    </a>
-                                    <a class="dropdown-item" href="/admin/category">
-                                        {{ __('Categories') }}
-                                    </a>
-                                    <a class="dropdown-item" href="/admin/posts/add">
-                                    {{ __('Add Post') }}
-                                    </a>
-                                    <a class="dropdown-item" href="/admin/category/add">
-                                       {{ __('Add Category') }}
-                                   </a>
-                                    <a class="dropdown-item" href="/logout"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        @include('admin.header')
+        @include('admin.topbar')
 
         <main class="py-4">
-            <div class="container py-4">
-                @if (Session::get('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{Session::get('success')}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-
-                @if (Session::get('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{Session::get('error')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+            @if (Session::get('success'))
+                <alert-box v-bind:msg="{{ json_encode(Session::get('success')) }}" type="success"></alert-box>
             @endif
-            </div>
+
+            @if (Session::get('error'))
+                <alert-box v-bind:msg="{{ json_encode(Session::get('error')) }}" type="error"></alert-box>
+            @endif
 
             @yield('content')
         </main>
+
+        @include('components.copyright')
     </div>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/mw4yr1zjxr8kgbdx652xu1zl3a3bgeo24g3easwbuavowx2d/tinymce/5/tinymce.min.js"></script> 
     <script>
     tinymce.init({
       selector: '#text-editor'
