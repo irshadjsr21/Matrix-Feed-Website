@@ -26,7 +26,7 @@ class CommentsApiController extends Controller
         $post = Post::find($id);
         if (!$post) {
             $error = array('postId' => 'The given post does not exist.');
-            return response($error->toJson(), 404);
+            return response($error, 404);
         }
 
         $comment = new Comment;
@@ -46,7 +46,7 @@ class CommentsApiController extends Controller
         $post = Post::find($id);
         if (!$post) {
             $error = array('postId' => 'The given post does not exist.');
-            return response($error->toJson(), 404);
+            return response($error, 404);
         }
 
         $comments = DB::table('comments')
@@ -64,14 +64,14 @@ class CommentsApiController extends Controller
         $post = Post::find($postId);
         if (!$post) {
             $error = array('postId' => 'The given post does not exist.');
-            return response($error->toJson(), 404);
+            return response($error, 404);
         }
 
         $comment = Comment::where([['post_id', $postId], ['id', $commentId]])->first();
 
         if (!$comment || ($comment->user_id != Auth::user()->id && !Auth::user()->isAdmin())) {
             $error = array('commentId' => 'The given comment does not exist.');
-            return response($error->toJson(), 404);
+            return response($error, 404);
         }
 
         $comment->delete();

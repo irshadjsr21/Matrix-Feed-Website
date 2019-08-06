@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\Rules\CategoryId;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -17,7 +18,7 @@ class PostsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('is_admin');
+        $this->middleware('is_author');
     }
 
     public function listPosts()
@@ -33,6 +34,10 @@ class PostsController extends Controller
     public function showPost(Request $request, $id)
     {
         $post = Post::find($id);
+        if (!$post) {
+            abort(404);
+        }
+
         $category = $post->category;
         $author = $post->authorObj;
         $data = array(
@@ -46,6 +51,15 @@ class PostsController extends Controller
     public function editPostPage(Request $request, $id)
     {
         $post = Post::find($id);
+
+        if (!$post) {
+            abort(404);
+        }
+
+        if (!(Auth::user()->isAdmin() || $post->author_id == Auth::user()->id)) {
+            abort(401);
+        }
+
         $categories = Category::all();
         $authors = User::where('type', User::AUTHOR_TYPE)->get();
 
@@ -72,6 +86,14 @@ class PostsController extends Controller
 
         $post = Post::find($id);
 
+        if (!$post) {
+            abort(404);
+        }
+
+        if (!(Auth::user()->isAdmin() || $post->author_id == Auth::user()->id)) {
+            abort(401);
+        }
+
         $posts = Post::where([['title', $request->input('title')], ['id', '!=', $id]])->count();
         if ($posts != 0) {
             $error = ValidationException::withMessages(['title' => 'Post with this title already exists.']);
@@ -80,6 +102,11 @@ class PostsController extends Controller
 
         $authorName = $request->author;
         $authorId = $request->authorId;
+
+        if (Auth::user()->isAuthor()) {
+            $authorId = Auth::user()->id;
+            $authorName = null;
+        }
 
         if ($authorId == -1 && !$authorName) {
             $error = ValidationException::withMessages(['authorId' => 'Please select author from dropdown or provide the author name.']);
@@ -145,6 +172,11 @@ class PostsController extends Controller
         $authorName = $request->author;
         $authorId = $request->authorId;
 
+        if (Auth::user()->isAuthor()) {
+            $authorId = Auth::user()->id;
+            $authorName = null;
+        }
+
         if ($authorId == -1 && !$authorName) {
             $error = ValidationException::withMessages(['authorId' => 'Please select author from dropdown or provide the author name.']);
             throw $error;
@@ -183,6 +215,14 @@ class PostsController extends Controller
     public function deletePost(Request $request, $id)
     {
         $post = Post::find($id);
+
+        if (!$post) {
+            abort(404);
+        }
+
+        if (!(Auth::user()->isAdmin() || $post->author_id == Auth::user()->id)) {
+            abort(401);
+        }
 
         $this->deleteImage($post->image);
         $post->delete();

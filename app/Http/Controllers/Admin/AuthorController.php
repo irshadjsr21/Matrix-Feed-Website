@@ -25,6 +25,10 @@ class AuthorController extends Controller
     public function showAuthor(Request $request, $id)
     {
         $author = User::where([['id', $id], ['type', User::AUTHOR_TYPE]])->first();
+        if (!$author) {
+            abort(404);
+        }
+
         $data = array(
             'author' => $author,
         );
@@ -35,6 +39,9 @@ class AuthorController extends Controller
     public function editAuthorPage(Request $request, $id)
     {
         $author = User::where([['id', $id], ['type', User::AUTHOR_TYPE]])->first();
+        if (!$author) {
+            abort(404);
+        }
         return view('admin.author.edit')->with('author', $author);
     }
 
@@ -51,6 +58,10 @@ class AuthorController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
         $author = User::where([['id', $id], ['type', User::AUTHOR_TYPE]])->first();
+
+        if (!$author) {
+            abort(404);
+        }
 
         $authors = User::where('email', $email)->count();
         if ($authors != 0 && $email != $author->email) {
@@ -119,6 +130,10 @@ class AuthorController extends Controller
     public function deleteAuthor(Request $request, $id)
     {
         $author = User::where([['id', $id], ['type', User::AUTHOR_TYPE]])->first();
+
+        if (!$author) {
+            abort(404);
+        }
 
         $author->delete();
         $request->session()->flash('success', 'Author deleted successfully!');

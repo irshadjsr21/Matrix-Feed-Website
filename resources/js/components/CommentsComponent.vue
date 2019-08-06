@@ -1,6 +1,6 @@
 <template>
   <div class="comments-section my-4">
-    <div v-if="!isadmin" class="form-group">
+    <div v-if="!nocomment" class="form-group">
       <textarea
         name="comment"
         class="form-control mb-2"
@@ -64,7 +64,7 @@
 <script>
 import LoginRequestModalVue from "./LoginRequestModal.vue";
 export default {
-  props: ["postid", "user", "isadmin"],
+  props: ["postid", "user", "isadmin", "nocomment"],
 
   data() {
     return {
