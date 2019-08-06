@@ -18,6 +18,7 @@
           <nav class="topbar-nav">
             <a href="/admin/posts">Posts</a>
             <a href="/admin/category">Categories</a>
+            <a href="/admin/author">Authors</a>
           </nav>
         </div>
       </div>

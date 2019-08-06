@@ -16,3 +16,11 @@ Route::get('/category/{id}', 'Admin\CategoryController@showCategory');
 Route::post('/category/{id}/delete', 'Admin\CategoryController@deleteCategory');
 Route::get('/category/{id}/edit', 'Admin\CategoryController@editCategoryPage');
 Route::post('/category/{id}/edit', 'Admin\CategoryController@editCategory');
+
+Route::get('/author', 'Admin\AuthorController@listAuthor');
+Route::get('/author/add', 'Admin\AuthorController@addAuthorPage');
+Route::post('/author', 'Admin\AuthorController@addAuthor');
+Route::get('/author/{id}', 'Admin\AuthorController@showAuthor');
+Route::post('/author/{id}/delete', 'Admin\AuthorController@deleteAuthor');
+Route::get('/author/{id}/edit', 'Admin\AuthorController@editAuthorPage');
+Route::post('/author/{id}/edit', 'Admin\AuthorController@editAuthor');

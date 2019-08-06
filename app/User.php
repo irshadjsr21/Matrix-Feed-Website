@@ -37,11 +37,16 @@ class User extends Authenticatable
     ];
 
     const ADMIN_TYPE = 'admin';
+    const AUTHOR_TYPE = 'author';
     const DEFAULT_TYPE = 'default';
 
     public function isAdmin()
     {
         return $this->type === self::ADMIN_TYPE;
+    }
+
+    public function isAuthor() {
+        return $this->type === self::AUTHOR_TYPE;
     }
 
     public function likes()
