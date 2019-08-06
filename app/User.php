@@ -45,7 +45,8 @@ class User extends Authenticatable
         return $this->type === self::ADMIN_TYPE;
     }
 
-    public function isAuthor() {
+    public function isAuthor()
+    {
         return $this->type === self::AUTHOR_TYPE;
     }
 

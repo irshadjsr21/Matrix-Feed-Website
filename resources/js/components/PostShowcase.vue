@@ -8,7 +8,8 @@
     >
       <div class="showcase-title">{{ posts[0].title | truncate(45)}}</div>
       <div class="showcase-details">
-        <span class="showcase-author">{{ posts[0].author }}</span>
+        <span class="showcase-author" v-if="posts[0].author_id">{{ posts[0].author_firstName + " " + posts[0].author_lastName }}</span>
+        <span class="showcase-author" v-if="!posts[0].author_id">{{ posts[0].author }}</span>
         <span class="showcase-date">
           -
           <date-format v-bind:date="posts[0].created_at"></date-format>

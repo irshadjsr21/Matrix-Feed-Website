@@ -25,4 +25,9 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function authorObj()
+    {
+        return $this->belongsTo('App\User', 'author_id');
+    }
 }

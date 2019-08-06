@@ -6,12 +6,16 @@ use App\Category;
 use App\Post;
 use App\Utils\SEO;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserPagesController extends Controller
 {
     public function index(Request $request)
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(15);
+        $posts = Post::leftJoin('users', 'users.id', '=', 'posts.author_id')
+            ->select(DB::raw('posts.*, users.firstName as author_firstName, users.lastName as author_lastName'))
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
         $categories = Category::all();
         $SEO = SEO::home($request->url());
         $data = array(
@@ -31,7 +35,11 @@ class UserPagesController extends Controller
             abort(404);
         }
 
-        $posts = Post::where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(15);
+        $posts = Post::leftJoin('users', 'users.id', '=', 'posts.author_id')
+            ->select(DB::raw('posts.*, users.firstName as author_firstName, users.lastName as author_lastName'))
+            ->where('category_id', $category->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
         $categories = Category::all();
         $SEO = SEO::home($request->url());
         $data = array(
@@ -46,7 +54,10 @@ class UserPagesController extends Controller
     public function showPost(Request $request, $slug)
     {
         $decodedSlug = urldecode($slug);
-        $post = Post::where('title', '=', $decodedSlug)->first();
+        $post = Post::leftJoin('users', 'users.id', '=', 'posts.author_id')
+            ->select(DB::raw('posts.*, users.firstName as author_firstName, users.lastName as author_lastName'))
+            ->where('title', '=', $decodedSlug)
+            ->first();
         if (!$post) {
             abort(404);
         }

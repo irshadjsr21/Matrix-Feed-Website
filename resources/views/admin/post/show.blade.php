@@ -10,7 +10,13 @@
       <h4 class="card-header">Body</h4>
       <div class="card-body">
         <div>{!! $post->body !!}</div>
-        <div class="text-muted text-right mr-4 mb-4">- {{ $post->author }}</div>
+        <div class="text-muted text-right mr-4 mb-4">
+          @if ($author)
+            <span>- {{ $author->firstName . ' ' . $author->lastName }}</span>
+          @else
+            <span>- {{ $post->author }}</span>
+          @endif  
+        </div>
         <div class="card-subtitle text-muted text-right mr-4 mb-2">Created on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->created_at) }}"/></div>
         <div class="card-subtitle text-muted text-right mr-4 mb-2">Updated on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->updated_at) }}"/></div>
       </div>
@@ -25,6 +31,21 @@
             </div>
           </div>
       </div>
+      @isset($author)
+      <div class="col-12 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Author</h4>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-6"><strong>Name :</strong> {{ $author->firstName . ' ' . $author->lastName }}</div>
+              <div class="col-12 col-md-6"><strong>Email :</strong> {{ $author->email }}</div>
+              <div class="col-12 col-md-6"><strong>About :</strong> {{ $author->about }}</div>
+              <div class="col-12 text-center mt-4"><a href="/admin/author/{{ $author->id }}" class="btn btn-secondary w-50">View</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endisset
       <div class="col-12 col-md-6 mb-4">
         <div class="card h-100">
           <h4 class="card-header">Image</h4>
@@ -46,7 +67,10 @@
           <div class="card h-100">
             <h4 class="card-header">Category</h4>
             <div class="card-body">
-              {{ $category->name }}
+              <div class="row">
+                <div class="col-12">{{ $category->name }}</div>
+                <div class="col-12 text-center mt-4"><a href="/admin/category/{{ $category->id }}" class="btn btn-secondary w-50">View</a></div>
+              </div>
             </div>
           </div>
         </div>

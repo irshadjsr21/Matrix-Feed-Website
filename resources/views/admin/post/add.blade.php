@@ -27,11 +27,37 @@
                       </div>
 
                       <div class="form-group row">
-                            <label for="author" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Author') }}</label>
+                        <label for="authorId" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Author') }}</label>
+
+                        <div class="col-12 col-md-10">
+                            <select id="authorId" class="form-control @error('authorId') is-invalid @enderror" name="authorId" autofocus>
+                                <option value="-1">[Null]</option>
+                                @foreach ($authors as $author)
+                                    <option value="{{$author->id}}">{{  $author->firstName . ' ' . $author->lastName }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('authorId')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                      </div>
+
+                      <div class="text-center my-2">
+                        <strong>OR</strong>
+                      </div>
+
+                      <div class="form-group row">
+                            <label for="author" class="col-12 col-md-2 col-form-label text-md-right">{{ __('Author Name') }}</label>
 
                             <div class="col-12 col-md-10">
                                 <input id="author" type="text" class="form-control @error('author') is-invalid @enderror" name="author" value="{{ old('author') }}" autocomplete="author" autofocus>
 
+                                <small>
+                                    <strong>Keep this empty if you're providing the Author from dropdown.</strong>
+                                </small>
                                 @error('author')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
