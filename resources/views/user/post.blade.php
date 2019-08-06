@@ -9,7 +9,7 @@
       <div class="post-details">
         <span class="post-author">by 
           @if ($post->author_id)
-            <a href="#">{{ $post->author_firstName . ' ' . $post->author_lastName }}</a>
+            <a href="/author/{{ $post->author_id }}">{{ $post->author_firstName . ' ' . $post->author_lastName }}</a>
           @else
             <span>{{ $post->author }}</span>
           @endif  

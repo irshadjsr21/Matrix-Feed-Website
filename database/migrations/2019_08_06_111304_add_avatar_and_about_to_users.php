@@ -16,7 +16,7 @@ class AddAvatarAndAboutToUsers extends Migration
         if (Schema::hasTable('users')) {
             if (!Schema::hasColumn('users', 'about')) {
                 Schema::table('users', function (Blueprint $table) {
-                    $table->string('about')->nullable();
+                    $table->text('about')->nullable();
                 });
             }
             if (!Schema::hasColumn('users', 'avatar')) {

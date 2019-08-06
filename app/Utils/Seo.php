@@ -23,6 +23,11 @@ class SEO
         return self::createObj($post->title, $post->description, $fullImgUrl, $url, $post->keywords, $post->created_at, 'article', false);
     }
 
+    public static function author($author, $url)
+    {
+        return self::createObj($author->firstName . ' ' . $author->lastName, $author->about, self::$default['image'], $url, null, null, 'website', false);
+    }
+
     public static function home($url)
     {
         return self::createObj(self::$default['title'], self::$default['content'], env('APP_URL') . '' . self::$default['image'], $url, self::$default['keywords'], null, 'website', false);

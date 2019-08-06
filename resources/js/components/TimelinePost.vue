@@ -15,7 +15,7 @@
 
       <div class="timeline-post-details">
         <a
-          href="#"
+          v-bind:href="'/author/' + post.author_id"
           class="timeline-post-author"
           v-if="post.author_id"
         >by {{ post.author_firstName + " " + post.author_lastName }}</a>
