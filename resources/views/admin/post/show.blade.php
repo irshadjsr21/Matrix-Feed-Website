@@ -10,9 +10,15 @@
       <h4 class="card-header">Body</h4>
       <div class="card-body">
         <div>{!! $post->body !!}</div>
-        <div class="text-muted text-right mr-4 mb-4">- {{ $post->author }}</div>
-        <div class="card-subtitle text-muted text-right mr-4 mb-2">Created on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->created_at) }}"/></div>
-        <div class="card-subtitle text-muted text-right mr-4 mb-2">Updated on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->updated_at) }}"/></div>
+        <div class="text-muted text-right mr-4 mb-4">
+          @if ($author)
+            <span>- {{ $author->firstName . ' ' . $author->lastName }}</span>
+          @else
+            <span>- {{ $post->author }}</span>
+          @endif  
+        </div>
+        <div class="card-subtitle text-muted text-right mr-4 mb-2">Created on <date-format v-bind:islong="1" v-bind:date="{{ json_encode($post->created_at) }}"/></div>
+        <div class="card-subtitle text-muted text-right mr-4 mb-2">Updated on <date-format v-bind:islong="1" v-bind:date="{{ json_encode($post->updated_at) }}"/></div>
       </div>
     </div>
 
@@ -25,6 +31,21 @@
             </div>
           </div>
       </div>
+      @isset($author)
+      <div class="col-12 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">Author</h4>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-6"><strong>Name :</strong> {{ $author->firstName . ' ' . $author->lastName }}</div>
+              <div class="col-12 col-md-6"><strong>Email :</strong> {{ $author->email }}</div>
+              <div class="col-12 col-md-6"><strong>About :</strong> {{ $author->about }}</div>
+              <div class="col-12 text-center mt-4"><a href="/admin/author/{{ $author->id }}" class="btn btn-secondary w-50">View</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endisset
       <div class="col-12 col-md-6 mb-4">
         <div class="card h-100">
           <h4 class="card-header">Image</h4>
@@ -46,7 +67,10 @@
           <div class="card h-100">
             <h4 class="card-header">Category</h4>
             <div class="card-body">
-              {{ $category->name }}
+              <div class="row">
+                <div class="col-12">{{ $category->name }}</div>
+                <div class="col-12 text-center mt-4"><a href="/admin/category/{{ $category->id }}" class="btn btn-secondary w-50">View</a></div>
+              </div>
             </div>
           </div>
         </div>
@@ -63,16 +87,22 @@
           <div class="card h-100">
             <h4 class="card-header">Comments</h4>
             <div class="card-body">
-                <comments-component v-bind:postid="{{ json_encode($post->id) }}" v-bind:user="{{ json_encode(Auth::user()) }}" v-bind:isadmin="true"><div class="loader loader-sm"></div></comments-component>
+              @if (Auth::user()->isAdmin())
+                <comments-component v-bind:postid="{{ json_encode($post->id) }}" v-bind:user="{{ json_encode(Auth::user()) }}" isadmin="1" nocomment="1"><div class="loader loader-sm"></div></comments-component>  
+              @else
+                <comments-component v-bind:postid="{{ json_encode($post->id) }}" v-bind:user="{{ json_encode(Auth::user()) }}" nocomment="1"><div class="loader loader-sm"></div></comments-component>                    
+              @endif
             </div>
           </div>
       </div>
     </div>
     
-    <a href="/admin/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
-  <form action="/admin/posts/{{$post->id}}/delete" method="post" class="float-right">
-    @csrf
-    <button class="btn btn-danger">Delete</button>
-  </form>
+    @if (Auth::user()->isAdmin() || $post->author_id == Auth::user()->id)
+      <a href="/admin/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a>
+      <form action="/admin/posts/{{$post->id}}/delete" method="post" class="float-right">
+        @csrf
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    @endif
 </div>
 @endsection

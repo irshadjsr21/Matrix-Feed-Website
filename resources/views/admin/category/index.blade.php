@@ -4,7 +4,9 @@
 <div class="container">
     <h1 class="row justify-content-between">
         <div class="col">Categories</div>     
-        <div class="col text-right"><a href="/admin/category/add" class="btn btn-primary">Add New</a></div>
+        @if(Auth::user()->isAdmin())
+            <div class="col text-right"><a href="/admin/category/add" class="btn btn-primary">Add New</a></div>
+        @endif
     </h1>
     <br>
     @if( count($categories) > 0)
@@ -18,7 +20,7 @@
             </div>
         @endforeach
     @else
-        <p>No category found</p>
+        <h2>No category found</h2>
     @endif
 
     <div>

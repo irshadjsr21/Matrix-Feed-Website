@@ -4,7 +4,11 @@
         <div class="col-12">
           <div class="row">
             <div class="col-12 text-center">
-              <h4>Matrix Feed Admin Panel</h4>
+              @if (Auth::user()->isAdmin())
+                <h4>Matrix Feed Admin Panel</h4>  
+              @else
+                <h4>Matrix Feed Author Panel</h4>                  
+              @endif
               <h5>Welcome {{ Auth::user()->firstName }}</h5>
             </div>
             <div class="col-12 text-center">

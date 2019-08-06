@@ -18,6 +18,9 @@
           <nav class="topbar-nav">
             <a href="/admin/posts">Posts</a>
             <a href="/admin/category">Categories</a>
+            @if (Auth::user()->isAdmin())
+              <a href="/admin/author">Authors</a> 
+            @endif
           </nav>
         </div>
       </div>

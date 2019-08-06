@@ -7,7 +7,13 @@
     <div class="post-meta">
       <h1>{{ $post->title }}</h1>
       <div class="post-details">
-        <span class="post-author">by {{ $post->author }}</span>
+        <span class="post-author">by 
+          @if ($post->author_id)
+            <a href="/author/{{ $post->author_id }}">{{ $post->author_firstName . ' ' . $post->author_lastName }}</a>
+          @else
+            <span>{{ $post->author }}</span>
+          @endif  
+        </span>
         <span class="post-date"> - <date-format v-bind:date="{{ json_encode($post->created_at) }}"></date-format></span>
       </div>
     </div>

@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('is_admin');
+        $this->middleware('is_author')->only('listCategory', 'showCategory');
+        $this->middleware('is_admin')->except('listCategory', 'showCategory');
     }
 
     public function listCategory()
@@ -23,7 +26,17 @@ class CategoryController extends Controller
     public function showCategory(Request $request, $id)
     {
         $category = Category::find($id);
-        $posts = $category->posts;
+
+        if (!$category) {
+            abort(404);
+        }
+
+        $posts = Post::leftJoin('users', 'users.id', '=', 'posts.author_id')
+            ->select(DB::raw('posts.*, users.firstName as author_firstName, users.lastName as author_lastName'))
+            ->where('category_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
+
         $data = array(
             'category' => $category,
             'posts' => $posts,
@@ -35,6 +48,10 @@ class CategoryController extends Controller
     public function editCategoryPage(Request $request, $id)
     {
         $category = Category::find($id);
+        if (!$category) {
+            abort(404);
+        }
+
         return view('admin.category.edit')->with('category', $category);
     }
 
@@ -53,6 +70,10 @@ class CategoryController extends Controller
         }
 
         $category = Category::find($id);
+
+        if (!$category) {
+            abort(404);
+        }
 
         $category->name = $name;
 
@@ -86,6 +107,10 @@ class CategoryController extends Controller
     public function deleteCategory(Request $request, $id)
     {
         $category = Category::find($id);
+
+        if (!$category) {
+            abort(404);
+        }
 
         $category->delete();
         $request->session()->flash('success', 'Category deleted successfully!');

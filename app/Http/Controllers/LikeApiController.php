@@ -14,7 +14,7 @@ class LikeApiController extends Controller
         $post = Post::find($id);
         if (!$post) {
             $error = array('postId' => 'The given post does not exist.');
-            return response($error->toJson(), 404);
+            return response($error, 404);
         }
 
         $like = Like::where([['post_id', $post->id], ['user_id', Auth::user()->id]])->first();
@@ -40,7 +40,7 @@ class LikeApiController extends Controller
         $post = Post::find($id);
         if (!$post) {
             $error = array('postId' => 'The given post does not exist.');
-            return response($error->toJson(), 404);
+            return response($error, 404);
         }
         $like = false;
         if (Auth::user()) {

@@ -136,6 +136,49 @@
                 </div>
               </div>
             </div>
+
+            <div class="form-group row">
+              <label for="about" class="mb-2 col-md-2 col-4 col-form-label">About</label>
+
+              <div class="mb-2 col-md-6 col-12">
+                <textarea
+                  id="about"
+                  type="text"
+                  class="form-control"
+                  name="about"
+                  v-model="about.value"
+                  v-bind:disabled="!about.isEditing"
+                ></textarea>
+                <span
+                  v-if="about.error"
+                  class="invalid-feedback"
+                  style="display:block;"
+                  role="alert"
+                >
+                  <strong>{{ about.error }}</strong>
+                </span>
+              </div>
+
+              <div class="col-md-4 col-6 mb-2">
+                <div class="row">
+                  <div class="col" v-if="!about.isEditing">
+                    <button class="btn btn-info" v-on:click="edit(about)">Edit</button>
+                  </div>
+                  <div class="col" v-if="about.isEditing">
+                    <button class="btn btn-danger" v-on:click="cancle(about)">Cancle</button>
+                  </div>
+                  <div class="col" v-if="about.isEditing" v-on:click="save(about)">
+                    <button
+                      class="btn btn-primary btn-loader-container"
+                      v-bind:disabled="about.isLoading"
+                    >
+                      <span class="btn-loader" v-if="about.isLoading"></span>
+                      <span>Save</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -255,6 +298,14 @@ export default {
         error: null,
         url: "/api/profile/email"
       },
+      about: {
+        name: "about",
+        value: this.user.about,
+        isLoading: false,
+        isEditing: false,
+        error: null,
+        url: "/api/profile"
+      },
       passForm: {
         password: null,
         newPassword: null,
@@ -307,6 +358,7 @@ export default {
       this.firstName.error = null;
       this.lastName.error = null;
       this.email.error = null;
+      this.about.error = null;
     },
     async changePass() {
       this.passForm.errors = [];
@@ -360,6 +412,6 @@ export default {
     clearPassForm() {
       this.passForm.password = this.passForm.newPassword = this.passForm.confirmPassword = null;
     }
-  },
+  }
 };
 </script>

@@ -36,10 +36,16 @@
     <br>
     @endif
 
-    <a href="/admin/category/{{$category->id}}/edit" class="btn btn-primary">Edit Category</a>
-    <form action="/admin/category/{{$category->id}}/delete" method="post" class="float-right">
-      @csrf
-      <button class="btn btn-danger">Delete Category</button>
-    </form>
+    <div>
+        {{$posts->links()}}
+    </div>
+
+    @if(Auth::user()->isAdmin())
+        <a href="/admin/category/{{$category->id}}/edit" class="btn btn-primary">Edit Category</a>
+        <form action="/admin/category/{{$category->id}}/delete" method="post" class="float-right">
+        @csrf
+        <button class="btn btn-danger">Delete Category</button>
+        </form>
+    @endif
 </div>
 @endsection

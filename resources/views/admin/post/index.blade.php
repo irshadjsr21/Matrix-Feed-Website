@@ -17,7 +17,13 @@
                         <div class="card-body">
                           <h5 class="card-title">{{ $post->title }}</h5>
                           <p class="card-text"><truncate-text v-bind:text="{{ json_encode($post->description) }}" v-bind:len="150" /></p>
-                          <div class="text-muted text-right mb-2">- {{ $post->author }}</div>
+                          <div class="text-muted text-right mb-2">
+                              @if ($post->author_id)
+                                <span>- {{ $post->author_firstName . ' ' . $post->author_lastName }}</span>
+                              @else
+                                <span>- {{ $post->author }}</span>
+                              @endif
+                            </div>
                           <div class="text-muted mb-4">
                               <div>Created on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->created_at) }}"></date-format></div>
                               <div>Updated on <date-format v-bind:islong="true" v-bind:date="{{ json_encode($post->updated_at) }}"></date-format></div>

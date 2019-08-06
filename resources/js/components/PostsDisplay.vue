@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  props: ["posts"],
+  props: ["posts", "isauthor"],
   data() {
     return {
       showcasePosts: [],
@@ -28,7 +28,7 @@ export default {
   created() {
     if (this.posts.data) {
       const page = this.getParameterByName("page");
-      if (!page || page == 1) {
+      if ((!page || page == 1) && !this.isauthor) {
         this.showcasePosts = this.posts.data.slice(0, 5);
         this.timelinePosts = this.posts.data.slice(5);
       } else {

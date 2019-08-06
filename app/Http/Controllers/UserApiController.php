@@ -24,6 +24,7 @@ class UserApiController extends Controller
         $validation = Validator::make($request->all(), [
             'firstName' => 'nullable|string|max:255',
             'lastName' => 'nullable|string|max:255',
+            'profile' => 'nullable|string',
         ]);
 
         $errors = $validation->errors();
@@ -33,11 +34,12 @@ class UserApiController extends Controller
 
         $firstName = $request->input('firstName');
         $lastName = $request->input('lastName');
+        $about = $request->input('about');
 
         $user = Auth::user();
 
-        if (!$firstName && !$lastName) {
-            return response(array('firstName' => 'First Name cannot empty.', 'lastName' => 'Last Name cannot empty.'), 400);
+        if (!$firstName && !$lastName && !$about) {
+            return response(array('firstName' => 'First Name cannot empty.', 'lastName' => 'Last Name cannot empty.', 'about' => 'About cannot empty.'), 400);
         }
 
         if ($firstName && $user->firstName != $firstName) {
@@ -47,6 +49,11 @@ class UserApiController extends Controller
 
         if ($lastName && $user->lastName != $lastName) {
             $user->lastName = $lastName;
+            $user->save();
+        }
+
+        if ($about && $user->about != $about) {
+            $user->about = $about;
             $user->save();
         }
 
