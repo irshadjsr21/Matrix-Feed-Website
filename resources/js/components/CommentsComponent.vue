@@ -100,7 +100,10 @@ export default {
     async addComment() {
       this.error = null;
       if (!this.isLoggedIn) {
-        this.$modal.show(LoginRequestModalVue, null, { height: "auto" });
+        this.$modal.show(LoginRequestModalVue, null, {
+          height: "auto",
+          adaptive: true
+        });
         return;
       }
       if (!this.newCommentText) {
