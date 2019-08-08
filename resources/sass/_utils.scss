@@ -157,6 +157,14 @@
   }
 }
 
+.verified {
+  color: $primary;
+}
+
+.t-mute {
+  opacity: 0.6;
+}
+
 @keyframes loader {
   0% {
     transform: rotate(0);

@@ -4,6 +4,7 @@
       <div class="col-sm-8 col-12">
         <a href="#" class="header-link">About</a>
         <a href="#" class="header-link">Contact</a>
+        <a href="/post-request" class="header-link">Publish Article</a>
         @guest
         <a href="/signup" class="header-link">Sign up</a>
         <a href="/login" class="header-link">Login</a>

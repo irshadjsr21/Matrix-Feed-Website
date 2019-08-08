@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\Rules\CategoryId;
 use App\User;
+use App\Utils\Upload;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,8 +15,6 @@ use Illuminate\Validation\ValidationException;
 
 class PostsController extends Controller
 {
-    private $folder = 'images';
-
     public function __construct()
     {
         $this->middleware('is_author');
@@ -134,8 +133,8 @@ class PostsController extends Controller
 
         if ($request->has('image') && $request->file('image')) {
             $image = $request->file('image');
-            $this->deleteImage($post->image);
-            $post->image = $this->addImage($image, $request->input('title'));
+            Upload::deleteImage($post->image);
+            $post->image = Upload::addImage($image, $request->input('title'));
         }
 
         $post->save();
@@ -202,7 +201,7 @@ class PostsController extends Controller
 
         if ($request->has('image')) {
             $image = $request->file('image');
-            $post->image = $this->addImage($image, $request->input('title'));
+            $post->image = Upload::addImage($image, $request->input('title'));
         }
 
         $post->save();
@@ -224,27 +223,9 @@ class PostsController extends Controller
             abort(401);
         }
 
-        $this->deleteImage($post->image);
+        Upload::deleteImage($post->image);
         $post->delete();
         $request->session()->flash('success', 'Post deleted successfully!');
         return redirect('/admin/posts');
-    }
-
-    private function addImage($image, $title)
-    {
-        $name = str_slug($title) . '_' . time() . '.' . $image->getClientOriginalExtension();
-        $filePath = '/' . $this->folder . '/' . $name;
-        $image->move(public_path($this->folder), $name);
-        return $filePath;
-    }
-
-    private function deleteImage($imageUrl)
-    {
-        $imageUrlArray = explode('/', $imageUrl);
-        $imageName = $imageUrlArray[sizeof($imageUrlArray) - 1];
-        $imagePath = public_path($this->folder . '/' . $imageName);
-        if (file_exists($imagePath)) {
-            @unlink($imagePath);
-        }
     }
 }

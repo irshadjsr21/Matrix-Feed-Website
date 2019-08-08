@@ -48,7 +48,7 @@ export default {
 
     async addLike() {
       if (!this.isLoggedIn) {
-        this.$modal.show(LoginRequestModalVue, null, { height: "auto" });
+        this.$modal.show(LoginRequestModalVue, null, { height: "auto", adaptive:true });
         return;
       }
       if (this.isProcessing) {

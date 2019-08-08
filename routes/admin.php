@@ -24,3 +24,9 @@ Route::get('/author/{id}', 'Admin\AuthorController@showAuthor');
 Route::post('/author/{id}/delete', 'Admin\AuthorController@deleteAuthor');
 Route::get('/author/{id}/edit', 'Admin\AuthorController@editAuthorPage');
 Route::post('/author/{id}/edit', 'Admin\AuthorController@editAuthor');
+
+Route::get('/post-request', 'Admin\PostRequestController@list');
+Route::get('/post-request/{id}', 'Admin\PostRequestController@show');
+Route::post('/post-request/{id}/accept', 'Admin\PostRequestController@accept');
+Route::post('/post-request/{id}/reject', 'Admin\PostRequestController@reject');
+Route::post('/post-request/{id}/delete', 'Admin\PostRequestController@delete');

@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function postRequests()
+    {
+        return $this->hasMany('App\PostRequest');
+    }
 }
