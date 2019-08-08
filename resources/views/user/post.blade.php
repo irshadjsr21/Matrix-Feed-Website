@@ -7,14 +7,14 @@
     <div class="post-meta">
       <h1>{{ $post->title }}</h1>
       <div class="post-details">
-        <span class="post-author">by 
+        <span class="post-author"><span class="t-mute">by</span> 
           @if ($post->author_id)
-            <a href="/author/{{ $post->author_id }}">{{ $post->author_firstName . ' ' . $post->author_lastName }}</a>
+            <a href="/author/{{ $post->author_id }}"><span class="t-mute">{{ $post->author_firstName . ' ' . $post->author_lastName }}</span> <i class="fas fa-check-circle"></i></a>
           @else
-            <span>{{ $post->author }}</span>
-          @endif  
+            <span class="t-mute">{{ $post->author }}</span>
+          @endif
         </span>
-        <span class="post-date"> - <date-format v-bind:date="{{ json_encode($post->created_at) }}"></date-format></span>
+        <span class="post-date t-mute"> - <date-format v-bind:date="{{ json_encode($post->created_at) }}"></date-format></span>
       </div>
     </div>
     <div class="image-container-full">

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Post;
 use App\PostRequest;
-use App\Rules\CategoryId;
 use App\Utils\SEO;
 use App\Utils\Upload;
 use Auth;
@@ -18,7 +18,7 @@ class PostRequestsController extends Controller
     }
 
     function list() {
-        $posts = Auth::user()->postRequests;
+        $posts = PostRequest::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
         $data = array(
             'SEO' => SEO::minimal('Requested Posts'),
@@ -72,10 +72,16 @@ class PostRequestsController extends Controller
             abort(404);
         }
 
+        $addedPost = null;
+        if ($post->post_id) {
+            $addedPost = Post::find($post->post_id);
+        }
+
         $data = array(
             'SEO' => SEO::post($post, $request->url()),
             'categories' => Category::all(),
             'post' => $post,
+            'addedPost' => $addedPost,
         );
 
         return view('user.postRequest.show')->with($data);

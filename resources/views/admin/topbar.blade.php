@@ -20,6 +20,7 @@
             <a href="/admin/category">Categories</a>
             @if (Auth::user()->isAdmin())
               <a href="/admin/author">Authors</a> 
+              <a href="/admin/post-request">Post Requests</a> 
             @endif
           </nav>
         </div>

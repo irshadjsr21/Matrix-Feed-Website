@@ -18,8 +18,13 @@
           v-bind:href="'/author/' + post.author_id"
           class="timeline-post-author"
           v-if="post.author_id"
-        >by {{ post.author_firstName + " " + post.author_lastName }}</a>
-        <span class="timeline-post-author" v-if="!post.author_id">by {{ post.author }}</span>
+        >
+          <span class="t-mute">by {{ post.author_firstName + " " + post.author_lastName }}</span>
+          <span class="verified">
+            <i class="fas fa-check-circle"></i>
+          </span>
+        </a>
+        <span class="timeline-post-author t-mute" v-if="!post.author_id">by {{ post.author }}</span>
         <span class="timeline-post-date">
           -
           <date-format v-bind:date="post.created_at"></date-format>
