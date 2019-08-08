@@ -32,6 +32,13 @@
         @include('../components/topbar')
 
         <div id="app" class="container">
+            @if (Session::get('success'))
+                <alert-box v-bind:msg="{{ json_encode(Session::get('success')) }}" type="success"></alert-box>
+            @endif
+
+            @if (Session::get('error'))
+                <alert-box v-bind:msg="{{ json_encode(Session::get('error')) }}" type="error"></alert-box>
+            @endif
             @yield('content')
         </div>
 

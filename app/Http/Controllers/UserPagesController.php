@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class UserPagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('listPostRequest', 'showPostRequest', 'showAddPostRequest', 'deletePostRequest', 'addPostRequest', 'showProfile');
+    }
+
     public function index(Request $request)
     {
         $posts = Post::leftJoin('users', 'users.id', '=', 'posts.author_id')
