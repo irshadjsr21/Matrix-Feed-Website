@@ -74,6 +74,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = $password;
         $user->type = User::DEFAULT_TYPE;
+        $user->avatar = User::getDefaultAvatar();
         $user->save();
 
         Auth::login($user, true);

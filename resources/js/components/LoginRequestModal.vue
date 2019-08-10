@@ -1,5 +1,5 @@
 <template>
-  <div class="login-request-modal">
+  <div class="default-modal">
     <div class="top-right clickable" @click="$emit('close')">
       <i class="fas fa-times"></i>
     </div>

@@ -40,6 +40,15 @@ class User extends Authenticatable
     const AUTHOR_TYPE = 'author';
     const DEFAULT_TYPE = 'default';
 
+    const AVATARS = ['/static images/default_avatar_1.png', '/static images/default_avatar_2.png', '/static images/default_avatar_3.png'];
+
+    public static function getDefaultAvatar()
+    {
+        $len = sizeof(self::AVATARS);
+        $random = rand(0, $len - 1);
+        return self::AVATARS[$random];
+    }
+
     public function isAdmin()
     {
         return $this->type === self::ADMIN_TYPE;

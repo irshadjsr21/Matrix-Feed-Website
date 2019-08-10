@@ -41,7 +41,7 @@
   cursor: pointer;
 }
 
-.login-request-modal {
+.default-modal {
   position: relative;
   padding: 20px 0;
   .top-right {
@@ -165,6 +165,15 @@
   opacity: 0.6;
 }
 
+.avatar {
+  width: 250px;
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+
 @keyframes loader {
   0% {
     transform: rotate(0);
@@ -186,5 +195,10 @@
         border-radius: 5px 5px 0 0;
       }
     }
+  }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
   }
 }
