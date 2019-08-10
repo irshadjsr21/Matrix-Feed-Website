@@ -25,7 +25,7 @@
           </span>
         </a>
         <span class="timeline-post-author t-mute" v-if="!post.author_id">by {{ post.author }}</span>
-        <span class="timeline-post-date">
+        <span class="timeline-post-date t-mute">
           -
           <date-format v-bind:date="post.created_at"></date-format>
         </span>
