@@ -35,9 +35,16 @@
         >
           <i class="fas fa-trash-alt"></i>
         </div>
+        <div class="comment-header">
+          <div
+            class="comment-avatar"
+            v-bind:style="'backgroundImage: url(\'' + comment.user_avatar  + '\')'"
+          ></div>
+
+          <div class="comment-name">{{ comment.user_firstName + ' ' + comment.user_lastName }}</div>
+        </div>
         <div class="comment-body">{{ comment.body }}</div>
         <div class="comment-meta text-right">
-          <div class="name">{{ comment.user_firstName + " " + comment.user_lastName }}</div>
           <div class="time">
             <date-format v-bind:date="comment.created_at" v-bind:islong="true"></date-format>
           </div>
