@@ -17,6 +17,7 @@ Route::get('/category/{slug}', 'UserPagesController@categoryPage');
 Route::get('/profile', 'UserPagesController@showProfile');
 Route::post('/profile/avatar', 'UserPagesController@updateAvatar');
 Route::get('/terms-and-conditions', 'UserPagesController@showTermsAndConditions');
+Route::get('/about-us', 'UserPagesController@showAbout');
 Route::get('/author/{id}', 'UserPagesController@showAuthorPage');
 
 Route::get('/post-request', 'PostRequestsController@list');

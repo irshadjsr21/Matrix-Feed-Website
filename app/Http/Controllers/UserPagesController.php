@@ -149,4 +149,13 @@ class UserPagesController extends Controller
         $user->save();
         return back();
     }
+
+    public function showAbout(Request $request) {
+        $data = array(
+            'SEO' => SEO::home($request->url()),
+            'categories' => Category::all(),
+        );
+
+        return view('user.about')->with($data);
+    }
 }
