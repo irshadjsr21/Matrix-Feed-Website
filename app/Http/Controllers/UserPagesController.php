@@ -6,14 +6,17 @@ use App\Category;
 use App\Post;
 use App\User;
 use App\Utils\SEO;
+use App\Utils\Upload;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class UserPagesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only('listPostRequest', 'showPostRequest', 'showAddPostRequest', 'deletePostRequest', 'addPostRequest', 'showProfile');
+        $this->middleware('auth')->only('updateAvatar', 'showProfile');
     }
 
     public function index(Request $request)
@@ -60,12 +63,15 @@ class UserPagesController extends Controller
     public function showPost(Request $request, $slug)
     {
         $decodedSlug = urldecode($slug);
-        $post = Post::leftJoin('users', 'users.id', '=', 'posts.author_id')
-            ->select(DB::raw('posts.*, users.firstName as author_firstName, users.lastName as author_lastName'))
-            ->where('title', '=', $decodedSlug)
-            ->first();
+        $post = Post::where('title', '=', $decodedSlug)->first();
         if (!$post) {
             abort(404);
+        }
+
+        $author = null;
+
+        if ($post->author_id) {
+            $author = User::where([['id', $post->author_id], ['type', User::AUTHOR_TYPE]])->first();
         }
 
         $categories = Category::all();
@@ -74,6 +80,7 @@ class UserPagesController extends Controller
             'post' => $post,
             'categories' => $categories,
             'SEO' => $SEO,
+            'author' => $author,
         );
         return view('user.post')->with($data);
     }
@@ -117,5 +124,38 @@ class UserPagesController extends Controller
         );
 
         return view('user.author', $data);
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'avatar' => 'required|image|mimes:jpg,jpeg,png,gif',
+        ]);
+
+        $errors = $validation->errors();
+        if ($validation->fails()) {
+            $request->session()->flash('error', 'Invalid Image.');
+            dd($errors);
+            return back();
+        }
+
+        $user = Auth::user();
+
+        if (!in_array($user->avatar, User::AVATARS)) {
+            Upload::deleteImage($user->avatar);
+        }
+
+        $user->avatar = Upload::addImage($request->avatar, $user->firstName);
+        $user->save();
+        return back();
+    }
+
+    public function showAbout(Request $request) {
+        $data = array(
+            'SEO' => SEO::home($request->url()),
+            'categories' => Category::all(),
+        );
+
+        return view('user.about')->with($data);
     }
 }

@@ -43,7 +43,7 @@ class PostRequestsController extends Controller
     {
         $request->validate([
             'title' => 'required|regex:/^[a-zA-Z0-9_()*\-.!&@$\s]*$/|unique:posts|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif',
             'body' => 'required|min:500',
         ]);
 

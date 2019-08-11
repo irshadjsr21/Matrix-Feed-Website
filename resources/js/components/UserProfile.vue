@@ -1,5 +1,18 @@
 <template>
   <div>
+    <!-- Avatar Starts here -->
+    <div class="mb-4">
+      <div class="row justify-content-center mb-2">
+        <div
+          class="avatar clickable"
+          @click="changeAvatar()"
+          v-bind:style="'backgroundImage: url(\'' + user.avatar  + '\')'"
+        ></div>
+      </div>
+      <div class="row justify-content-center t-mute">Click Avatar to change it</div>
+    </div>
+    <!-- Avatar Ends here -->
+
     <!-- Details Section starts here -->
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -268,6 +281,7 @@
 <script>
 import axios from "axios";
 import { isArray, isString } from "util";
+import AvatarUpdateModalVue from "./AvatarUpdateModal.vue";
 export default {
   props: ["user"],
   data() {
@@ -411,6 +425,18 @@ export default {
     },
     clearPassForm() {
       this.passForm.password = this.passForm.newPassword = this.passForm.confirmPassword = null;
+    },
+    changeAvatar() {
+      this.$modal.show(
+        AvatarUpdateModalVue,
+        {
+          avatar: this.user.avatar
+        },
+        {
+          height: "auto",
+          adaptive: true
+        }
+      );
     }
   }
 };

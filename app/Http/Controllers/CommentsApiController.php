@@ -37,6 +37,7 @@ class CommentsApiController extends Controller
 
         $comment['user_firstName'] = Auth::user()->firstName;
         $comment['user_lastName'] = Auth::user()->lastName;
+        $comment['user_avatar'] = Auth::user()->avatar;
 
         return $comment->toJson();
     }
@@ -52,7 +53,7 @@ class CommentsApiController extends Controller
         $comments = DB::table('comments')
             ->where('post_id', $post->id)
             ->join('users', 'users.id', '=', 'comments.user_id')
-            ->select('comments.*', 'users.firstName as user_firstName', 'users.lastName as user_lastName')
+            ->select('comments.*', 'users.firstName as user_firstName', 'users.lastName as user_lastName', 'users.avatar as user_avatar')
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 

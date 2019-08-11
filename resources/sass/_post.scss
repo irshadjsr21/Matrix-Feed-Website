@@ -73,20 +73,32 @@
       opacity: 0.6;
     }
 
-    .comment-meta {
-      .name {
-        opacity: 0.6;
-        font-size: 0.8rem;
-      }
+    .comment-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 20px;
 
-      .time {
-        font-size: 0.7rem;
-        opacity: 0.6;
+      .comment-avatar {
+        width: 30px;
+        height: 30px;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+        background-color: #ddd;
+        margin-right: 10px;
       }
     }
 
     .comment-body {
       font-size: 0.9rem;
+    }
+
+    .comment-meta {
+      .time {
+        font-size: 0.7rem;
+        opacity: 0.6;
+      }
     }
 
     &.comment-current-user {
@@ -100,6 +112,20 @@
     width: 100%;
     text-align: center;
     padding: 10px;
+  }
+}
+
+.author-section {
+  font-size: 1rem;
+
+  .author-avatar {
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin: auto;
   }
 }
 

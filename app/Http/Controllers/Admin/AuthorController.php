@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Post;
 use App\User;
 use App\Utils\GeneratePassword;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class AuthorController extends Controller
@@ -29,8 +31,15 @@ class AuthorController extends Controller
             abort(404);
         }
 
+        $posts = Post::leftJoin('users', 'users.id', '=', 'posts.author_id')
+            ->select(DB::raw('posts.*, users.firstName as author_firstName, users.lastName as author_lastName'))
+            ->where('author_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
+
         $data = array(
             'author' => $author,
+            'posts' => $posts,
         );
 
         return view('admin.author.show')->with($data);
@@ -73,6 +82,7 @@ class AuthorController extends Controller
         $author->lastName = $request->lastName;
         $author->about = $request->about;
         $author->email = $request->email;
+        $author->avatar = User::getDefaultAvatar();
         if ($password) {
             $author->password = Hash::make($password);
         }

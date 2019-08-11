@@ -8,8 +8,8 @@
       <h1>{{ $post->title }}</h1>
       <div class="post-details">
         <span class="post-author"><span class="t-mute">by</span> 
-          @if ($post->author_id)
-            <a href="/author/{{ $post->author_id }}"><span class="t-mute">{{ $post->author_firstName . ' ' . $post->author_lastName }}</span> <i class="fas fa-check-circle"></i></a>
+          @if ($author)
+            <a href="/author/{{ $post->author_id }}"><span class="t-mute">{{ $author->firstName . ' ' . $author->lastName }}</span> <i class="fas fa-check-circle"></i></a>
           @else
             <span class="t-mute">{{ $post->author }}</span>
           @endif
@@ -22,6 +22,30 @@
     </div>
     <div class="post-body">
         {!! $post->body !!}
+
+    
+    @if($author)
+    <a href="/author/{{$author->id}}" class="text-reset row justify-content-center mb-4 author-section">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="row align-items-center justify-content-around">
+              <div class="col-md-4 mb-2">
+                <div class="author-avatar" 
+                style="backgroundImage: url('{{ $author->avatar }}')">
+                </div>
+              </div>
+
+              <div class="col-md-8 mb-2">
+                <h4 class="mb-2">{{ $author->firstName . ' ' . $author->lastName }}</h4>
+                <truncate-text v-bind:text="{{ json_encode($author->about) }}" v-bind:len="120" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    @endif
 
     <like-component v-bind:postid="{{ json_encode($post->id) }}" v-bind:user="{{ json_encode(Auth::user()) }}"><div class="loader loader-sm"></div></like-component>
         
