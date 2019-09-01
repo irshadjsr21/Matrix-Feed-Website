@@ -18,7 +18,7 @@ class Upload
     {
         $imageUrlArray = explode('/', $imageUrl);
         $imageName = $imageUrlArray[sizeof($imageUrlArray) - 1];
-        $imagePath = public_path(self::$folder . '\\' . $imageName);
+        $imagePath = public_path(self::$folder . '/' . $imageName);
         if (file_exists($imagePath)) {
             @unlink($imagePath);
         }
@@ -28,14 +28,14 @@ class Upload
     {
         $preImageUrlArray = explode('/', $preUrl);
         $preImageName = $preImageUrlArray[sizeof($preImageUrlArray) - 1];
-        $preImagePath = public_path(self::$folder . '\\' . $preImageName);
+        $preImagePath = public_path(self::$folder . '/' . $preImageName);
 
         $preImageNameArray = explode('.', $preImageName);
         $extension = $preImageNameArray[sizeof($preImageNameArray) - 1];
 
         if (file_exists($preImagePath)) {
             $name = str_slug($newTitle) . '_' . time() . '.' . $extension;
-            $filePath = self::$folder . '\\' . $name;
+            $filePath = self::$folder . '/' . $name;
             copy($preImagePath, public_path($filePath));
             return '/' . self::$folder . '/' . $name;
         }

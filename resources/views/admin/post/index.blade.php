@@ -35,7 +35,7 @@
             @endforeach
         </div>
     @else
-        <p>No post found</p>
+        <h2 class="text-center">No post found</h2>
     @endif
 
     <div>
