@@ -128,6 +128,7 @@ class AuthorController extends Controller
         $author->lastName = $request->input('lastName');
         $author->email = $request->input('email');
         $author->about = $request->input('about');
+        $author->avatar = User::getDefaultAvatar();
         $author->password = Hash::make($password);
 
         $author->save();

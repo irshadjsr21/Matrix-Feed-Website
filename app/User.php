@@ -40,7 +40,16 @@ class User extends Authenticatable
     const AUTHOR_TYPE = 'author';
     const DEFAULT_TYPE = 'default';
 
-    const AVATARS = ['/static images/default_avatar_1.png', '/static images/default_avatar_2.png', '/static images/default_avatar_3.png'];
+    const AVATARS = [
+        '/static images/avatars/avat1.png',
+        '/static images/avatars/avat2.png',
+        '/static images/avatars/avat3.png',
+        '/static images/avatars/avat4.png',
+        '/static images/avatars/avat5.png',
+        '/static images/avatars/avat6.png',
+        '/static images/avatars/avat7.png',
+        '/static images/avatars/avat8.png'
+    ];
 
     public static function getDefaultAvatar()
     {

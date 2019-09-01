@@ -20,7 +20,7 @@
             </div>
         @endforeach
     @else
-        <h2>No category found</h2>
+        <h2 class="text-center">No category found</h2>
     @endif
 
     <div>
